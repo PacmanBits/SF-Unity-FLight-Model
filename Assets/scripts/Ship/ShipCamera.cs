@@ -7,7 +7,7 @@ public class ShipCamera : ShipComponent {
 	private Camera cam;
 	private Rigidbody camRB;
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
 		base.Start ();
 
 		cam = Camera.main;

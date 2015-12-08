@@ -8,7 +8,7 @@ public class ShipEngine : ShipComponent {
 	public float maxMultiplier = 2.0f;
 
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
 		base.Start ();
 	}
 	
