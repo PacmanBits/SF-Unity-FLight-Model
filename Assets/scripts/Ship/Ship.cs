@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class Ship : MonoBehaviour {
-	public Rigidbody   rb      { get; private set; }
-	public ShipControl control { get; private set; }
-	public ShipEngine  engine  { get; private set; }
-	public ShipPilot   pilot   { get; private set; }
-	public ShipCamera  camera  { get; private set; }
+	public Rigidbody   rb               { get; private set; }
+	public ShipControl control          { get; private set; }
+	public ShipEngine  engine           { get; private set; }
+	public ShipPilot   pilot            { get; private set; }
+	public ShipCamera  cameraController { get; private set; }
 
 	public Transform   rollObj;
 
@@ -14,11 +14,11 @@ public class Ship : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		rb      = gameObject.GetComponent<Rigidbody>   ();
-		pilot   = gameObject.GetComponent<ShipPilot>   ();
-		engine  = gameObject.GetComponent<ShipEngine>  ();
-		control = gameObject.GetComponent<ShipControl> ();
-		camera  = gameObject.GetComponent<ShipCamera>  ();
+		rb               = gameObject.GetComponent<Rigidbody>   ();
+		pilot            = gameObject.GetComponent<ShipPilot>   ();
+		engine           = gameObject.GetComponent<ShipEngine>  ();
+		control          = gameObject.GetComponent<ShipControl> ();
+		cameraController = gameObject.GetComponent<ShipCamera>  ();
 
 		if (rollObj == null)
 			throw new MissingReferenceException ("Ship requires that a valid roll object is specified,");
@@ -42,8 +42,8 @@ public class Ship : MonoBehaviour {
 		if (control == null)
 			Debug.LogWarning ("No control found on ship.");
 		
-		if (camera == null)
-			Debug.LogWarning ("No camera found on ship.");
+		if (cameraController == null)
+			Debug.LogWarning ("No camera controller found on ship.");
 
 	}
 }
