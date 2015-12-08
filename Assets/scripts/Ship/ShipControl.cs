@@ -4,6 +4,7 @@ using System.Collections;
 public class ShipControl : ShipComponent {
 	// TODO: smooth turning should maybe be its own controller
 	public float maxRoll = 20;
+	public float maxPitch = 10;
 	public float horizontalAngularAcceleration = 3;
 	public float verticalAcceleration = 4;
 	public float maxHorizontalAngularVelocity = 3;
@@ -27,7 +28,7 @@ public class ShipControl : ShipComponent {
 		Debug.DrawRay (transform.position, horizontalAngularVelocity * transform.right, Color.red);
 		Debug.DrawRay (transform.position, verticalVelocity * transform.up, Color.green);
 
-		ship.rollObj.localRotation = Quaternion.Euler (0, 0, -1 * (horizontalAngularVelocity / maxHorizontalAngularVelocity) * maxRoll);
+		ship.rollObj.localRotation = Quaternion.Euler (-1 * (verticalVelocity / maxVerticalVelocity) * maxPitch, 0, -1 * (horizontalAngularVelocity / maxHorizontalAngularVelocity) * maxRoll);
 		
 		ship.rb.angularVelocity = new Vector3(0, horizontalAngularVelocity, 0);
 		ship.rb.MovePosition(transform.position + new Vector3(0, verticalVelocity * Time.deltaTime, 0));
