@@ -8,7 +8,7 @@ public class ShipControl : ShipComponent {
 	public readonly float MAX_HEADING = 1;
 	
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
 		base.Start ();
 	}
 	
