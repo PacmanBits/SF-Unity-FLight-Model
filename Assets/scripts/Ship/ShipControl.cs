@@ -21,23 +21,33 @@ public class ShipControl : ShipComponent {
 	void Update () {
 		Vector2 targetHeading = clampVector(ship.pilot.getHeading (), MIN_HEADING, MAX_HEADING);
 
-		updateNewHorizontalAngularVelocity (targetHeading.x);
+		updateHorizontalAngularVelocity (targetHeading.x);
+		updateVerticalVelocity (targetHeading.y);
+
+		Debug.DrawRay (transform.position, horizontalAngularVelocity * transform.right, Color.red);
+		Debug.DrawRay (transform.position, verticalVelocity * transform.up, Color.green);
 
 		ship.rollObj.localRotation = Quaternion.Euler (0, 0, -1 * (horizontalAngularVelocity / maxHorizontalAngularVelocity) * maxRoll);
-		//ship.rollObj.localRotation = Quaternion.AngleAxis(-1 * heading.x * maxRoll, transform.forward);
 		
 		ship.rb.angularVelocity = new Vector3(0, horizontalAngularVelocity, 0);
+		ship.rb.MovePosition(transform.position + new Vector3(0, verticalVelocity * Time.deltaTime, 0));
 	}
 	
 	private Vector2 clampVector(Vector2 vec, float min, float max) {
 		return new Vector2 (Mathf.Clamp (vec.x, min, max), Mathf.Clamp (vec.y, min, max));
 	}
 
-	private void updateNewHorizontalAngularVelocity(float horizontalHeading) {
+	private void updateHorizontalAngularVelocity(float horizontalHeading) {
 		float targetAngV = horizontalHeading * maxHorizontalAngularVelocity;
-
 
 		float delta = targetAngV - horizontalAngularVelocity;
 		horizontalAngularVelocity += delta * horizontalAngularAcceleration * Time.deltaTime;
+	}
+
+	private void updateVerticalVelocity(float verticalHeading) {
+		float targetV = verticalHeading * maxVerticalVelocity;
+
+		float delta = targetV - verticalVelocity;
+		verticalVelocity += delta * verticalAcceleration * Time.deltaTime;
 	}
 }
