@@ -18,7 +18,6 @@ public class Debris : MonoBehaviour
 
 	public Transform debris_prefab = null;
 
-	// Use this for initialization
 	void Start ()
 	{
 		if (fld_safe_zone >= fld_size)

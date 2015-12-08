@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class ShipPilot : ShipComponent {
-	
-	// Use this for initialization
+
 	protected override void Start () {
 		base.Start ();
 	}

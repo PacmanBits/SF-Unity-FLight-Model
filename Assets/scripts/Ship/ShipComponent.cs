@@ -4,7 +4,6 @@ using System.Collections;
 public class ShipComponent : MonoBehaviour {
 	protected Ship ship;
 
-	// Use this for initialization
 	protected virtual void Start () {
 		ship = gameObject.GetComponent<Ship> ();
 		

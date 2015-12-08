@@ -12,7 +12,6 @@ public class Ship : MonoBehaviour {
 
 
 
-	// Use this for initialization
 	void Awake () {
 		rb               = gameObject.GetComponent<Rigidbody>   ();
 		pilot            = gameObject.GetComponent<ShipPilot>   ();

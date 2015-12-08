@@ -3,7 +3,6 @@ using System.Collections;
 
 public class HumanPilot : ShipPilot {
 
-	// Use this for initialization
 	protected override void Start () {
 		base.Start ();
 	}

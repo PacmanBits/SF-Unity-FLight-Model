@@ -6,7 +6,7 @@ public class ShipCamera : ShipComponent {
 
 	private Camera cam;
 	private Rigidbody camRB;
-	// Use this for initialization
+
 	protected override void Start () {
 		base.Start ();
 
@@ -17,8 +17,8 @@ public class ShipCamera : ShipComponent {
 		if (camRB == null)
 			camRB = cam.gameObject.AddComponent<Rigidbody> ();
 	}
-	
-	// Update is called once per frame
+
+
 	void Update () {
 		cam.transform.forward = transform.forward;
 

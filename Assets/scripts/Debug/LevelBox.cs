@@ -6,7 +6,6 @@ public class LevelBox : MonoBehaviour {
 	public float size = 100;
 	public float wallThickness = 1f;
 
-	// Use this for initialization
 	void Start () {
 		makeWall (Vector3.forward);
 		makeWall (Vector3.back);
