@@ -16,7 +16,9 @@ public class ShipControl : ShipComponent {
 	void Update () {
 		Vector2 heading = clampVector(ship.pilot.getHeading (), MIN_HEADING, MAX_HEADING);
 		ship.rb.angularVelocity = new Vector3(0, heading.x, heading.y);
-		ship.rollObj.rotation = Quaternion.AngleAxis(-1 * heading.x * maxRoll, transform.forward);
+
+		ship.rollObj.localRotation = Quaternion.Euler (0, 0, -1 * heading.x * maxRoll);
+		//ship.rollObj.localRotation = Quaternion.AngleAxis(-1 * heading.x * maxRoll, transform.forward);
 	}
 
 	private Vector2 clampVector(Vector2 vec, float min, float max) {
