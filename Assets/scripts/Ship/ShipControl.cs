@@ -11,12 +11,20 @@ public class ShipControl : ShipComponent {
 	public float maxVerticalVelocity = 3;
 	public readonly float MIN_HEADING = -1;
 	public readonly float MAX_HEADING = 1;
+	
+	public Transform   rollObj;
 
 	private float horizontalVelocity = 0;
 	private float verticalVelocity = 0;
 
 	protected override void Start () {
 		base.Start ();
+		
+		if (rollObj == null)
+			throw new MissingReferenceException ("Ship requires that a valid roll object is specified,");
+		
+		if (!rollObj.IsChildOf (transform))
+			Debug.LogWarning ("Roll object was specified, but was not a child of ship.");
 	}
 
 	void Update () {
@@ -31,7 +39,7 @@ public class ShipControl : ShipComponent {
 		Debug.DrawRay (transform.position, 5 * transform.right * horzVelFrac, Color.red);
 		Debug.DrawRay (transform.position, 5 * transform.up * vertVelFrac, Color.green);
 
-		ship.rollObj.localRotation = Quaternion.Euler (-1 * vertVelFrac * maxPitch, 0, -1 * horzVelFrac * maxRoll);
+		rollObj.localRotation = Quaternion.Euler (-1 * vertVelFrac * maxPitch, 0, -1 * horzVelFrac * maxRoll);
 		ship.rb.angularVelocity = horizontalVelocity * Time.deltaTime * Vector3.up;
 		ship.rb.MovePosition(transform.position + new Vector3(0, verticalVelocity * Time.deltaTime, 0));
 	}

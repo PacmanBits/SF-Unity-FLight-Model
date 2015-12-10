@@ -8,8 +8,6 @@ public class Ship : MonoBehaviour {
 	public ShipPilot   pilot            { get; private set; }
 	public ShipCamera  cameraController { get; private set; }
 
-	public Transform   rollObj;
-
 
 
 	void Awake () {
@@ -18,12 +16,6 @@ public class Ship : MonoBehaviour {
 		engine           = gameObject.GetComponent<ShipEngine>  ();
 		control          = gameObject.GetComponent<ShipControl> ();
 		cameraController = gameObject.GetComponent<ShipCamera>  ();
-
-		if (rollObj == null)
-			throw new MissingReferenceException ("Ship requires that a valid roll object is specified,");
-
-		if (!rollObj.IsChildOf (transform))
-			Debug.LogWarning ("Roll object was specified, but was not a child of ship.");
 		
 		if (rb == null) {
 			Debug.LogWarning("No Rigidbody component found on ship, creating one.");
