@@ -5,14 +5,14 @@ public class ShipControl : ShipComponent {
 	// TODO: smooth turning should maybe be its own controller
 	public float maxRoll = 20;
 	public float maxPitch = 10;
-	public float horizontalAngularAcceleration = 3;
+	public float horizontalAcceleration = 3;
 	public float verticalAcceleration = 4;
-	public float maxHorizontalAngularVelocity = 3;
+	public float maxHorizontalVelocity = 3;
 	public float maxVerticalVelocity = 3;
 	public readonly float MIN_HEADING = -1;
 	public readonly float MAX_HEADING = 1;
 
-	private float horizontalAngularVelocity = 0;
+	private float horizontalVelocity = 0;
 	private float verticalVelocity = 0;
 
 	protected override void Start () {
@@ -26,13 +26,13 @@ public class ShipControl : ShipComponent {
 		updateVerticalVelocity (targetHeading.y);
 		
 		float vertVelFrac = verticalVelocity / maxVerticalVelocity;
-		float horzVelFrac = horizontalAngularVelocity / maxHorizontalAngularVelocity;
+		float horzVelFrac = horizontalVelocity / maxHorizontalVelocity;
 
 		Debug.DrawRay (transform.position, 5 * transform.right * horzVelFrac, Color.red);
 		Debug.DrawRay (transform.position, 5 * transform.up * vertVelFrac, Color.green);
 
 		ship.rollObj.localRotation = Quaternion.Euler (-1 * vertVelFrac * maxPitch, 0, -1 * horzVelFrac * maxRoll);
-		ship.rb.angularVelocity = horizontalAngularVelocity * Time.deltaTime * Vector3.up;
+		ship.rb.angularVelocity = horizontalVelocity * Time.deltaTime * Vector3.up;
 		ship.rb.MovePosition(transform.position + new Vector3(0, verticalVelocity * Time.deltaTime, 0));
 	}
 	
@@ -41,10 +41,10 @@ public class ShipControl : ShipComponent {
 	}
 
 	private void updateHorizontalAngularVelocity(float horizontalHeading) {
-		float targetAngV = horizontalHeading * maxHorizontalAngularVelocity;
+		float targetAngV = horizontalHeading * maxHorizontalVelocity;
 
-		float delta = targetAngV - horizontalAngularVelocity;
-		horizontalAngularVelocity += delta * horizontalAngularAcceleration * Time.deltaTime;
+		float delta = targetAngV - horizontalVelocity;
+		horizontalVelocity += delta * horizontalAcceleration * Time.deltaTime;
 	}
 
 	private void updateVerticalVelocity(float verticalHeading) {
