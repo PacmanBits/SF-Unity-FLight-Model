@@ -36,6 +36,14 @@ public class ShipControl : ShipComponent {
 		ship.rb.MovePosition(transform.position + new Vector3(0, verticalVelocity * Time.deltaTime, 0));
 	}
 	
+	void LateUpdate() {
+		lockAxis ();
+	}
+
+	private void lockAxis() {
+		ship.rb.MoveRotation(Quaternion.Euler (0, transform.rotation.eulerAngles.y, 0));
+	}
+	
 	private Vector2 clampVector(Vector2 vec, float min, float max) {
 		return new Vector2 (Mathf.Clamp (vec.x, min, max), Mathf.Clamp (vec.y, min, max));
 	}
