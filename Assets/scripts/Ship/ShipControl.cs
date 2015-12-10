@@ -24,11 +24,14 @@ public class ShipControl : ShipComponent {
 
 		updateHorizontalAngularVelocity (targetHeading.x);
 		updateVerticalVelocity (targetHeading.y);
+		
+		float vertVelFrac = verticalVelocity / maxVerticalVelocity;
+		float horzVelFrac = horizontalAngularVelocity / maxHorizontalAngularVelocity;
 
-		Debug.DrawRay (transform.position, 5 * horizontalAngularVelocity * transform.right / maxHorizontalAngularVelocity, Color.red);
-		Debug.DrawRay (transform.position, 5 * verticalVelocity * transform.up / maxVerticalVelocity, Color.green);
+		Debug.DrawRay (transform.position, 5 * transform.right * horzVelFrac, Color.red);
+		Debug.DrawRay (transform.position, 5 * transform.up * vertVelFrac, Color.green);
 
-		ship.rollObj.localRotation = Quaternion.Euler (-1 * (verticalVelocity / maxVerticalVelocity) * maxPitch, 0, -1 * (horizontalAngularVelocity / maxHorizontalAngularVelocity) * maxRoll);
+		ship.rollObj.localRotation = Quaternion.Euler (-1 * vertVelFrac * maxPitch, 0, -1 * horzVelFrac * maxRoll);
 		ship.rb.angularVelocity = horizontalAngularVelocity * Time.deltaTime * Vector3.up;
 		ship.rb.MovePosition(transform.position + new Vector3(0, verticalVelocity * Time.deltaTime, 0));
 	}
