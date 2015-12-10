@@ -29,10 +29,6 @@ public class ShipControl : ShipComponent {
 		Debug.DrawRay (transform.position, 5 * verticalVelocity * transform.up / maxVerticalVelocity, Color.green);
 
 		ship.rollObj.localRotation = Quaternion.Euler (-1 * (verticalVelocity / maxVerticalVelocity) * maxPitch, 0, -1 * (horizontalAngularVelocity / maxHorizontalAngularVelocity) * maxRoll);
-		//Debug.Log (Quaternion.Euler( (horizontalAngularVelocity, Vector3.up));
-		//Debug.Log (horizontalAngularVelocity);
-		//ship.rb.MoveRotation(Quaternion.AngleAxis(horizontalAngularVelocity, Vector3.up));
-		//ship.rb.MoveRotation(transform.rotation * Quaternion.AngleAxis(horizontalAngularVelocity * Time.deltaTime, Vector3.up));
 		ship.rb.angularVelocity = horizontalAngularVelocity * Time.deltaTime * Vector3.up;
 		ship.rb.MovePosition(transform.position + new Vector3(0, verticalVelocity * Time.deltaTime, 0));
 	}
