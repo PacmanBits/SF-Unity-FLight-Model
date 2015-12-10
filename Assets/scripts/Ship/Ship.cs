@@ -45,4 +45,13 @@ public class Ship : MonoBehaviour {
 			Debug.LogWarning ("No camera controller found on ship.");
 
 	}
+
+	void LateUpdate() {
+		lockAxis ();
+	}
+
+	// TODO: this causes some weird irregular motion
+	private void lockAxis() {
+		rb.MoveRotation(Quaternion.Euler (0, transform.rotation.eulerAngles.y, 0));
+	}
 }
