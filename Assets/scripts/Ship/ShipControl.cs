@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class ShipControl : ShipComponent {
@@ -14,11 +14,14 @@ public class ShipControl : ShipComponent {
 	
 	public Transform   rollObj;
 
-	private float horizontalVelocity = 0;
-	private float verticalVelocity = 0;
+	public float horizontalVelocity { get; private set; }
+	public float verticalVelocity   { get; private set; }
 
 	protected override void Start () {
 		base.Start ();
+
+		horizontalVelocity = 0;
+		verticalVelocity = 0;
 		
 		if (rollObj == null)
 			throw new MissingReferenceException ("Ship requires that a valid roll object is specified,");
@@ -33,8 +36,8 @@ public class ShipControl : ShipComponent {
 		updateHorizontalAngularVelocity (targetHeading.x);
 		updateVerticalVelocity (targetHeading.y);
 		
-		float vertVelFrac = verticalVelocity / maxVerticalVelocity;
-		float horzVelFrac = horizontalVelocity / maxHorizontalVelocity;
+		float vertVelFrac = getVerticalFraction ();
+		float horzVelFrac = getHorizontalFraction ();
 
 		Debug.DrawRay (transform.position, 5 * transform.right * horzVelFrac, Color.red);
 		Debug.DrawRay (transform.position, 5 * transform.up * vertVelFrac, Color.green);
@@ -46,6 +49,14 @@ public class ShipControl : ShipComponent {
 	
 	void LateUpdate() {
 		lockAxis ();
+	}
+
+	public float getHorizontalFraction() {
+		return horizontalVelocity / maxHorizontalVelocity;
+	}
+	
+	public float getVerticalFraction() {
+		return verticalVelocity / maxVerticalVelocity;
 	}
 
 	private void lockAxis() {

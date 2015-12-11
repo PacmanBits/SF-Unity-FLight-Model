@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class ShipCamera : ShipComponent {
-	// TODO: throw this out and start from scratch
+	public Transform cameraTarget;
+	public Vector2 lookAhead = new Vector2(1, 1);
 
 	private Camera cam;
 	private Rigidbody camRB;
@@ -10,18 +11,18 @@ public class ShipCamera : ShipComponent {
 	protected override void Start () {
 		base.Start ();
 
+		if (cameraTarget == null)
+			throw new MissingReferenceException ("No Camera Target specified");
+
 		cam = Camera.main;
-
-		camRB = cam.GetComponent<Rigidbody> ();
-
-		if (camRB == null)
-			camRB = cam.gameObject.AddComponent<Rigidbody> ();
 	}
 
 
 	void Update () {
-		cam.transform.forward = transform.forward;
+		cam.transform.forward = cameraTarget.forward;
 
-		cam.transform.position = transform.position - transform.forward * 10;
+		cam.transform.position = cameraTarget.position;
+
+		cam.transform.Rotate (ship.control.getHorizontalFraction() * lookAhead.x * transform.up + ship.control.getVerticalFraction() * lookAhead.y * transform.right);
 	}
 }
