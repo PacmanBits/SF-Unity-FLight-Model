@@ -24,7 +24,7 @@ public class Shake : MonoBehaviour {
 	private float          targetTime  ;
 	private TransformState startState  ;
 
-	private bool           shaking = false;
+	private bool           stateSaved = false;
 
 	// Use this for initialization
 	void Start () {
@@ -37,26 +37,28 @@ public class Shake : MonoBehaviour {
 		elapsedTime += Time.deltaTime;
 
 		if (targetTime <= elapsedTime) {
-			disable ();
+			stopShaking ();
 		}
 
 
 	}
 
 	public void shake(float duration = 0.5f) {
+		startShaking (duration);
 	}
 
 	private void saveTransformState() {
-		if (startState == null)
+		if (stateSaved)
 			Debug.LogWarning ("A transform state was already saved and not reverted to.  Overwriting.");
 
+		stateSaved = true;
 		startState = getTransformState ();
 	}
 
-	private void revertTransformState() {
-		if (!shaking) {
+	private void restoreTransformState() {
+		if (stateSaved) {
 			setTransformState (startState);
-			startState = null;
+			stateSaved = false;
 		}
 	}
 
@@ -69,17 +71,15 @@ public class Shake : MonoBehaviour {
 		transform.rotation = state.rotation;
 	}
 
-	private void startShaking() {
+	private void startShaking(float duration) {
 		targetTime  = duration ;
 		elapsedTime = 0        ;
-		shaking     = true     ;
 		
 		enable ();
 	}
 
 	private void stopShaking() {
-		shaking = false;
-
+		restoreTransformState ();
 		disable ();
 	}
 
