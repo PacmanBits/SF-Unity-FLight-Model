@@ -11,11 +11,11 @@ public class Ship : MonoBehaviour {
 
 
 	void Awake () {
-		rb               = gameObject.GetComponent<Rigidbody>   ();
-		pilot            = gameObject.GetComponent<ShipPilot>   ();
-		engine           = gameObject.GetComponent<ShipEngine>  ();
-		control          = gameObject.GetComponent<ShipControl> ();
-		cameraController = gameObject.GetComponent<ShipCamera>  ();
+		rb                = gameObject.GetComponent<Rigidbody>   ();
+		pilot             = gameObject.GetComponent<ShipPilot>   ();
+		engine            = gameObject.GetComponent<ShipEngine>  ();
+		control           = gameObject.GetComponent<ShipControl> ();
+		cameraController  = gameObject.GetComponent<ShipCamera>  ();
 		
 		if (rb == null) {
 			Debug.LogWarning("No Rigidbody component found on ship, creating one.");

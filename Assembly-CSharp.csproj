@@ -47,11 +47,13 @@
   <ItemGroup>
      <Compile Include="Assets\scripts\Debug\Debris.cs" />
      <Compile Include="Assets\scripts\Debug\LevelBox.cs" />
+     <Compile Include="Assets\scripts\Other\Shake.cs" />
      <Compile Include="Assets\scripts\Ship\Pilots\HumanPilot.cs" />
      <Compile Include="Assets\scripts\Ship\Ship.cs" />
      <Compile Include="Assets\scripts\Ship\ShipCamera.cs" />
      <Compile Include="Assets\scripts\Ship\ShipComponent.cs" />
      <Compile Include="Assets\scripts\Ship\ShipControl.cs" />
+     <Compile Include="Assets\scripts\Ship\ShipCrash.cs" />
      <Compile Include="Assets\scripts\Ship\ShipEngine.cs" />
      <Compile Include="Assets\scripts\Ship\ShipPilot.cs" />
  <Reference Include="UnityEngine.Networking">
