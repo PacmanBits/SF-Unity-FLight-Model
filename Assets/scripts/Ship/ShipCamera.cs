@@ -43,7 +43,9 @@ public class ShipCamera : ShipComponent {
 		//if (vel.magnitude > maxSpeed)
 		//	vel = vel.normalized * maxSpeed;
 
-		camRB.velocity = pDiff * speedFactor;
+		//camRB.velocity = pDiff * speedFactor;
+		//cam.transform.position = pDiff * speedFactor;
+		cam.transform.position = cameraTarget.position;
 
 		//Vector3 rDiff = cameraTarget.forward - cam.transform.forward;
 		//Debug.Log (rDiff);
