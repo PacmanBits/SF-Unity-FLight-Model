@@ -3,13 +3,20 @@ using System.Collections;
 
 public class ShipHealth : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+	public float health { get; private set; }
+	public float maxHealth { get; private set; }
+	public float healthFrac {
+		get {
+			return health / maxHealth;
+		};
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public float damage(float amount) {
+		return heal (-1 * amount);
+	}
+
+	public float heal(float amount) {
+		health += amount;
+		return health;
 	}
 }
