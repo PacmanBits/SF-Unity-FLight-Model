@@ -24,7 +24,7 @@ public class Ship : MonoBehaviour {
 		T comp = gameObject.GetComponent<T> ();
 
 		if (comp == null) {
-			string name = "fakeType";
+			string name = typeof(T).Name;
 
 			if(addIfNotFound) {
 				Debug.LogWarning("No " + name + " component found on ship, creating basic " + name + ".");
