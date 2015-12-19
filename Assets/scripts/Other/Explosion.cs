@@ -7,20 +7,12 @@ public class Explosion : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		part = GetComponent<ParticleSystem> ();
-
-		enabled = false;
+		part.Play();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (part.IsAlive (true))
+		if (!part.IsAlive (true))
 			Destroy (gameObject);
-	}
-
-	public void Explode() {
-		if (!enabled) {
-			enabled = true;
-			part.Play();
-		}
 	}
 }
