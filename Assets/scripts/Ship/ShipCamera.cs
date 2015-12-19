@@ -34,7 +34,7 @@ public class ShipCamera : ShipComponent {
 	void Update () {
 		cam.transform.forward = cameraTarget.forward;
 
-		Vector3 pDiff = cameraTarget.position - cam.transform.position;
+		//Vector3 pDiff = cameraTarget.position - cam.transform.position;
 
 		//acc = pDiff * speedFactor;
 
