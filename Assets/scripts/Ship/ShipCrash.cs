@@ -9,6 +9,7 @@ public class ShipCrash : ShipComponent {
 		//Debug.Log (collision.impulse.magnitude);
 
 		Ray aveNorm = averageNormal (collision.contacts);
+		Vector3 reflect = Vector3.Reflect (transform.forward, aveNorm.direction);
 
 		float damage = collision.impulse.magnitude * damageFactor;
 
@@ -17,7 +18,12 @@ public class ShipCrash : ShipComponent {
 		//Debug.DrawRay (aveNorm.origin, collision.impulse * 10, Color.blue, 10);
 		//Debug.DrawRay (aveNorm.origin, aveNorm.direction * 10, Color.green, 10);
 		//ship.rb.AddForce (point.normal * 100);
-		//transform.forward = aveNorm.direction;
+		transform.forward = reflect;
+
+		Debug.DrawRay (aveNorm.origin, aveNorm.direction, Color.white, 10);
+		Debug.DrawRay (aveNorm.origin,transform.forward * -1, Color.green, 10);
+		Debug.DrawRay (aveNorm.origin, reflect, Color.blue, 10);
+
 		GetComponent<Shake> ().shake ();
 
 	}
