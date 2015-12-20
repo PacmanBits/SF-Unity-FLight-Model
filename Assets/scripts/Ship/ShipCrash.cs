@@ -7,29 +7,19 @@ public class ShipCrash : ShipComponent {
 	void OnCollisionEnter(Collision collision) {
 
 		//Debug.Log (collision.impulse.magnitude);
-		/*
+
 		Ray aveNorm = averageNormal (collision.contacts);
-		Debug.DrawRay (aveNorm.origin, aveNorm.direction, Color.green, 1f);
-
-		float angle = Vector3.Angle (transform.forward, aveNorm.direction);
-
-		Debug.Log (angle);
-
-		Rigidbody otherRB = collision.rigidbody;
-		*/
 
 		float damage = collision.impulse.magnitude * damageFactor;
 
 		ship.health.damage (damage);
 
-		/*
-		ContactPoint point = collision.contacts [0];
-
-		Debug.DrawRay (point.point, point.normal * 10, Color.white, 1);
-		ship.rb.AddForce (point.normal * 100);
-		//transform.forward = point.normal;
+		//Debug.DrawRay (aveNorm.origin, collision.impulse * 10, Color.blue, 10);
+		//Debug.DrawRay (aveNorm.origin, aveNorm.direction * 10, Color.green, 10);
+		//ship.rb.AddForce (point.normal * 100);
+		//transform.forward = aveNorm.direction;
 		GetComponent<Shake> ().shake ();
-		*/
+
 	}
 
 	private Ray averageNormal(ContactPoint[] contacts) {
