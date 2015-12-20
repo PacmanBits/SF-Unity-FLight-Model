@@ -14,26 +14,29 @@ public class ShipHealth : MonoBehaviour {
 
 	public GameObject explosion;
 
+	private Color healthFGColor = new Color(1,    0, 0) ;
+	private Color healthBGColor = new Color(0.5f, 0, 0) ;
+	private float barLength     = 200                   ;
+	private float barHeight     = 10                    ;
+
 	void Start() {
 		health = maxHealth;
 	}
 
+	void OnGUI() {
+		DrawQuad (new Rect (0, 0, barLength,              barHeight), healthBGColor);
+		DrawQuad (new Rect (0, 0, barLength * healthFrac, barHeight), healthFGColor);
+	}
+
 	public float damage(float amount) {
-		Debug.Log ("Damaging for " + amount);
-		
 		return setHealth (health - amount);
 	}
 
 	public float heal(float amount) {
-		Debug.Log ("Healing for " + amount);
-
 		return setHealth (health + amount);
 	}
 
 	public float setHealth(float amount) {
-
-		Debug.Log ("Setting health to " + amount);
-
 		health = Mathf.Clamp (amount, 0, maxHealth);
 
 		if (health == 0)
@@ -45,5 +48,13 @@ public class ShipHealth : MonoBehaviour {
 	public void kill() {
 		Instantiate (explosion, transform.position, Quaternion.identity);
 		Destroy (gameObject);
+	}
+	
+	private void DrawQuad(Rect position, Color color) {
+		Texture2D texture = new Texture2D(1, 1);
+		texture.SetPixel(0,0,color);
+		texture.Apply();
+		GUI.skin.box.normal.background = texture;
+		GUI.Box(position, GUIContent.none);
 	}
 }
