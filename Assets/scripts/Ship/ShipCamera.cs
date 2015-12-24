@@ -5,15 +5,12 @@ public class ShipCamera : ShipComponent {
 	public Transform cameraTarget;
 	public Vector2 lookAhead = new Vector2(1, 1);
 
-	//public float maxSpeed = 2f;
-	public float speedFactor = 0.5f;
-	//public float rotationalLag = 0.5f;
-
 	private Camera cam;
-	private Rigidbody camRB;
 
-	//private Vector3 vel = Vector3.zero;
-	//private Vector3 acc = Vector3.zero;
+	private Color healthFGColor = new Color(1,    0, 0) ;
+	private Color healthBGColor = new Color(0.5f, 0, 0) ;
+	private float barLength     = 200                   ;
+	private float barHeight     = 10                    ;
 
 	protected override void Start () {
 		base.Start ();
@@ -22,35 +19,40 @@ public class ShipCamera : ShipComponent {
 			throw new MissingReferenceException ("No Camera Target specified");
 
 		cam = Camera.main;
-		camRB = cam.gameObject.GetComponent<Rigidbody> ();
-
-		if (camRB == null)
-			camRB = cam.gameObject.AddComponent<Rigidbody> ();
-
-		camRB.useGravity = false;
 	}
 
 
 	void Update () {
+		// Camera rotate
 		cam.transform.forward = cameraTarget.forward;
 
-		//Vector3 pDiff = cameraTarget.position - cam.transform.position;
-
-		//acc = pDiff * speedFactor;
-
-		//vel += acc;
-
-		//if (vel.magnitude > maxSpeed)
-		//	vel = vel.normalized * maxSpeed;
-
-		//camRB.velocity = pDiff * speedFactor;
-		//cam.transform.position = pDiff * speedFactor;
+		// Simple follow
 		cam.transform.position = cameraTarget.position;
 
-		//Vector3 rDiff = cameraTarget.forward - cam.transform.forward;
-		//Debug.Log (rDiff);
-		//cam.transform.forward = rDiff * rotationalLag;
+		// Lag follow
+		/*
+		Vector3 pDiff = cameraTarget.position - cam.transform.position;
 
+		if (pDiff.magnitude > 1)
+			pDiff.Normalize ();
+
+		cam.transform.position += pDiff / 2f;
+		*/
+
+		// Look ahead
 		cam.transform.Rotate (ship.control.getHorizontalFraction() * lookAhead.x * transform.up + ship.control.getVerticalFraction() * lookAhead.y * transform.right);
+	}
+	
+	void OnGUI() {
+		DrawQuad (new Rect (10, 10, barLength, barHeight), healthBGColor);
+		DrawQuad (new Rect (10, 10, barLength * ship.health.healthFrac, barHeight), healthFGColor);
+	}
+	
+	private void DrawQuad(Rect position, Color color) {
+		Texture2D texture = new Texture2D(1, 1);
+		texture.SetPixel(0,0,color);
+		texture.Apply();
+		GUI.skin.box.normal.background = texture;
+		GUI.Box(position, GUIContent.none);
 	}
 }
