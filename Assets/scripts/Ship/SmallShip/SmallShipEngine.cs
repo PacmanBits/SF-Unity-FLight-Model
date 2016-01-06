@@ -2,6 +2,13 @@
 using System.Collections;
 
 public class SmallShipEngine : ShipEngine {
+	
+	protected SmallShip smallShip {
+		get {
+			return ship as SmallShip;
+		}
+	}
+
 	public float velocity = 5f;
 	public float minMultiplier = 0.5f;
 	public float maxMultiplier = 2.0f;

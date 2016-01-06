@@ -2,6 +2,13 @@
 using System.Collections;
 
 public class SmallShipControl : ShipControl {
+	
+	protected SmallShip smallShip {
+		get {
+			return ship as SmallShip;
+		}
+	}
+
 	// TODO: smooth turning should maybe be its own controller
 	public float maxRoll = 20;
 	public float maxPitch = 10;

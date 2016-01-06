@@ -3,6 +3,12 @@ using System.Collections;
 
 public class SmallShipCrash : ShipCrash {
 	
+	protected SmallShip smallShip {
+		get {
+			return ship as SmallShip;
+		}
+	}
+	
 	protected override void OnCollisionEnter(Collision collision) {
 		base.OnCollisionEnter (collision);
 
