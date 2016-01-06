@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HumanPilot : ShipPilot {
+public class SmallHumanPilot : SmallShipPilot {
 	
 	public override float getThrottleModifier() {
 		if (Input.GetKey (KeyCode.LeftShift))
@@ -24,7 +24,7 @@ public class HumanPilot : ShipPilot {
 			heading.y = -1;
 		else if (Input.GetKey (KeyCode.UpArrow))
 			heading.y = 1;
-
+		
 		return heading;
 	}
 }

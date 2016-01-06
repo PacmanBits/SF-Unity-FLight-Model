@@ -11,7 +11,7 @@ public class Ship : MonoBehaviour {
 
 
 
-	void Awake () {
+	protected virtual void Awake () {
 		rb      = checkForComponent<Rigidbody>(true)  ;
 		pilot   = checkForComponent<ShipPilot>(true)  ;
 		health  = checkForComponent<ShipHealth>(true) ;
@@ -20,7 +20,7 @@ public class Ship : MonoBehaviour {
 		cam     = checkForComponent<ShipCamera>()     ;
 	}
 
-	private T checkForComponent<T>(bool addIfNotFound = false) where T: Component {
+	protected T checkForComponent<T>(bool addIfNotFound = false) where T: Component {
 		T comp = gameObject.GetComponent<T> ();
 
 		if (comp == null) {
@@ -30,7 +30,7 @@ public class Ship : MonoBehaviour {
 				Debug.LogWarning("No " + name + " component found on ship, creating basic " + name + ".");
 				comp = gameObject.AddComponent<T>();
 			} else {
-				Debug.LogWarning ("No " + name + " component found on ship.");
+				Debug.LogWarning("No " + name + " component found on ship.");
 			}
 		}
 

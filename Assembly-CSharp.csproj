@@ -58,6 +58,13 @@
      <Compile Include="Assets\scripts\Ship\ShipEngine.cs" />
      <Compile Include="Assets\scripts\Ship\ShipHealth.cs" />
      <Compile Include="Assets\scripts\Ship\ShipPilot.cs" />
+     <Compile Include="Assets\scripts\Ship\SmallShip\Pilots\SmallHumanPilot.cs" />
+     <Compile Include="Assets\scripts\Ship\SmallShip\SmallShip.cs" />
+     <Compile Include="Assets\scripts\Ship\SmallShip\SmallShipCamera.cs" />
+     <Compile Include="Assets\scripts\Ship\SmallShip\SmallShipControl.cs" />
+     <Compile Include="Assets\scripts\Ship\SmallShip\SmallShipCrash.cs" />
+     <Compile Include="Assets\scripts\Ship\SmallShip\SmallShipEngine.cs" />
+     <Compile Include="Assets\scripts\Ship\SmallShip\SmallShipPilot.cs" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>

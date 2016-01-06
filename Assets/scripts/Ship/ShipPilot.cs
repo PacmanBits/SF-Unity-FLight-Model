@@ -3,10 +3,6 @@ using System.Collections;
 
 public class ShipPilot : ShipComponent {
 
-	protected override void Start () {
-		base.Start ();
-	}
-
 	public virtual float getThrottleModifier() {
 		return 1;
 	}
