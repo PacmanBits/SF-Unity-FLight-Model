@@ -1,7 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SmallShipControl : ShipControl {
+public class SmallShipControl : SmallShipComponent {
+	public struct LockedAxis {
+		public bool x;
+		public bool y;
+		public bool z;
+		
+		public LockedAxis(bool _x, bool _y, bool _z) {
+			x = _x;
+			y = _y;
+			z = _z;
+		}
+	}
+	
+	public LockedAxis lockedAxis = new LockedAxis(false, false, false);
 	
 	protected SmallShip smallShip {
 		get {
@@ -60,6 +73,21 @@ public class SmallShipControl : ShipControl {
 		rollObj.localRotation = Quaternion.Euler (-1 * vertVelFrac * maxPitch, 0, -1 * horzVelFrac * maxRoll);
 		ship.rb.angularVelocity = horizontalVelocity * Time.deltaTime * Vector3.up;
 		ship.rb.MovePosition(transform.position + new Vector3(0, verticalVelocity * Time.deltaTime, 0));
+	}
+
+	protected virtual void LateUpdate() {
+		lockAxis (lockedAxis);
+	}
+	
+	// TODO: should be in a utility class
+	protected void lockAxis(LockedAxis axis) {
+		
+		ship.rb.MoveRotation(Quaternion.Euler (0, transform.rotation.eulerAngles.y, 0));
+	}
+	
+	// TODO: should be in a utility class
+	protected Vector2 clampVector(Vector2 vec, float min, float max) {
+		return new Vector2 (Mathf.Clamp (vec.x, min, max), Mathf.Clamp (vec.y, min, max));
 	}
 	
 	private void updateHorizontalAngularVelocity(float horizontalHeading) {

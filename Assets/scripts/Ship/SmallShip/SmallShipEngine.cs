@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SmallShipEngine : ShipEngine {
+public class SmallShipEngine : SmallShipComponent {
 	
 	protected SmallShip smallShip {
 		get {
