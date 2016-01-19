@@ -13,8 +13,37 @@ public class SmallShipControl : SmallShipComponent {
 			z = _z;
 		}
 	}
+
+	    ////////////////////////
+	   ////                ////
+	  ////   Properties   ////
+	 ////                ////
+	////////////////////////
+
+	  ////////////////////////
+	 //  public            //
+	////////////////////////
 	
-	public LockedAxis lockedAxis = new LockedAxis(false, false, false);
+	public          LockedAxis lockedAxis             = new LockedAxis(false, false, false);
+	
+	// TODO: smooth turning should maybe be its own controller
+	public          float      maxRoll                = 20 ;
+	public          float      maxPitch               = 10 ;
+	public          float      horizontalAcceleration = 3  ;
+	public          float      verticalAcceleration   = 4  ;
+	public          float      maxHorizontalVelocity  = 3  ;
+	public          float      maxVerticalVelocity    = 3  ;
+	public readonly float      MIN_HEADING            = -1 ;
+	public readonly float      MAX_HEADING            = 1  ;
+	
+	public          Transform  rollObj;
+	
+	public          float      horizontalVelocity { get; private set; }
+	public          float      verticalVelocity   { get; private set; }
+
+	  ////////////////////////
+	 //  protected         //
+	////////////////////////
 	
 	protected SmallShip smallShip {
 		get {
@@ -22,20 +51,15 @@ public class SmallShipControl : SmallShipComponent {
 		}
 	}
 
-	// TODO: smooth turning should maybe be its own controller
-	public float maxRoll = 20;
-	public float maxPitch = 10;
-	public float horizontalAcceleration = 3;
-	public float verticalAcceleration = 4;
-	public float maxHorizontalVelocity = 3;
-	public float maxVerticalVelocity = 3;
-	public readonly float MIN_HEADING = -1;
-	public readonly float MAX_HEADING = 1;
-	
-	public Transform   rollObj;
-	
-	public float horizontalVelocity { get; private set; }
-	public float verticalVelocity   { get; private set; }
+	  ////////////////////////
+	 //  private           //
+	////////////////////////
+
+	    ////////////////////////
+	   ////                ////
+	  ////     Unity      ////
+	 ////                ////
+	////////////////////////
 	
 	protected override void Start () {
 		base.Start ();
@@ -50,15 +74,7 @@ public class SmallShipControl : SmallShipComponent {
 			Debug.LogWarning ("Roll object was specified, but was not a child of ship.");
 	}
 	
-	public float getHorizontalFraction() {
-		return horizontalVelocity / maxHorizontalVelocity;
-	}
-	
-	public float getVerticalFraction() {
-		return verticalVelocity / maxVerticalVelocity;
-	}
-	
-	void Update () {
+	private void Update () {
 		Vector2 targetHeading = clampVector(ship.pilot.getHeading (), MIN_HEADING, MAX_HEADING);
 		
 		updateHorizontalAngularVelocity (targetHeading.x);
@@ -74,10 +90,32 @@ public class SmallShipControl : SmallShipComponent {
 		ship.rb.angularVelocity = horizontalVelocity * Time.deltaTime * Vector3.up;
 		ship.rb.MovePosition(transform.position + new Vector3(0, verticalVelocity * Time.deltaTime, 0));
 	}
-
-	protected virtual void LateUpdate() {
+	
+	private void LateUpdate() {
 		lockAxis (lockedAxis);
 	}
+	
+	    ////////////////////////
+	   ////                ////
+	  ////    Methods     ////
+	 ////                ////
+	////////////////////////
+
+	  ////////////////////////
+	 //  public            //
+	////////////////////////
+	
+	public float getHorizontalFraction() {
+		return horizontalVelocity / maxHorizontalVelocity;
+	}
+	
+	public float getVerticalFraction() {
+		return verticalVelocity / maxVerticalVelocity;
+	}
+
+	  ////////////////////////
+	 //  protected         //
+	////////////////////////
 	
 	// TODO: should be in a utility class
 	protected void lockAxis(LockedAxis axis) {
@@ -89,6 +127,10 @@ public class SmallShipControl : SmallShipComponent {
 	protected Vector2 clampVector(Vector2 vec, float min, float max) {
 		return new Vector2 (Mathf.Clamp (vec.x, min, max), Mathf.Clamp (vec.y, min, max));
 	}
+
+	  ////////////////////////
+	 //  private           //
+	////////////////////////
 	
 	private void updateHorizontalAngularVelocity(float horizontalHeading) {
 		float targetAngV = horizontalHeading * maxHorizontalVelocity;

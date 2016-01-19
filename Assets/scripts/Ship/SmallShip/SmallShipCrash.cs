@@ -2,13 +2,46 @@
 using System.Collections;
 
 public class SmallShipCrash : SmallShipComponent {
-	public float damageFactor = 1.0f;
+
+	    ////////////////////////
+	   ////                ////
+	  ////   Properties   ////
+	 ////                ////
+	////////////////////////
+
+	  ////////////////////////
+	 //  public            //
+	////////////////////////
 	
-	protected SmallShip smallShip {
-		get {
-			return ship as SmallShip;
-		}
-	}
+	public float damageFactor = 1.0f;
+
+	  ////////////////////////
+	 //  protected         //
+	////////////////////////
+
+	  ////////////////////////
+	 //  private           //
+	////////////////////////
+
+	    ////////////////////////
+	   ////                ////
+	  ////     Unity      ////
+	 ////                ////
+	////////////////////////
+	
+	    ////////////////////////
+	   ////                ////
+	  ////    Methods     ////
+	 ////                ////
+	////////////////////////
+
+	  ////////////////////////
+	 //  public            //
+	////////////////////////
+
+	  ////////////////////////
+	 //  protected         //
+	////////////////////////
 	
 	// TODO: utility function
 	protected Ray averageNormal(ContactPoint[] contacts) {
@@ -26,7 +59,7 @@ public class SmallShipCrash : SmallShipComponent {
 	protected virtual void OnCollisionEnter(Collision collision) {
 		float damage = collision.impulse.magnitude * damageFactor;
 		ship.health.damage (damage);
-
+		
 		Ray aveNorm = averageNormal (collision.contacts);
 		Vector3 reflect = Vector3.Reflect (transform.forward, aveNorm.direction);
 		
@@ -42,4 +75,8 @@ public class SmallShipCrash : SmallShipComponent {
 		//GetComponent<Shake> ().shake ();
 		
 	}
+
+	  ////////////////////////
+	 //  private           //
+	////////////////////////
 }

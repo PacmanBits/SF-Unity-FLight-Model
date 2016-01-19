@@ -2,15 +2,40 @@
 using System.Collections;
 
 public class SmallShipCamera : SmallShipComponent {
+
+	    ////////////////////////
+	   ////                ////
+	  ////   Properties   ////
+	 ////                ////
+	////////////////////////
+
+	  ////////////////////////
+	 //  public            //
+	////////////////////////
+
 	public Transform cameraTarget;
 	public Vector2 lookAhead = new Vector2(1, 1);
+
+	  ////////////////////////
+	 //  protected         //
+	////////////////////////
 	
 	protected Camera cam;
+
+	  ////////////////////////
+	 //  private           //
+	////////////////////////
 	
 	private Color healthFGColor = new Color(1,    0, 0) ;
 	private Color healthBGColor = new Color(0.5f, 0, 0) ;
 	private float barLength     = 200                   ;
 	private float barHeight     = 10                    ;
+
+	    ////////////////////////
+	   ////                ////
+	  ////     Unity      ////
+	 ////                ////
+	////////////////////////
 	
 	protected override void Start () {
 		if (cameraTarget == null)
@@ -20,12 +45,31 @@ public class SmallShipCamera : SmallShipComponent {
 		
 		base.Start ();
 	}
-
-	void Update () {
+	
+	protected virtual void Update () {
 		updateCameraPosition ();
 		updateCameraRotation ();
 	}
+	
+	private void OnGUI() {
+		DrawQuad (new Rect (10, 10, barLength, barHeight), healthBGColor);
+		DrawQuad (new Rect (10, 10, barLength * ship.health.healthFrac, barHeight), healthFGColor);
+	}
+	
+	    ////////////////////////
+	   ////                ////
+	  ////    Methods     ////
+	 ////                ////
+	////////////////////////
 
+	  ////////////////////////
+	 //  public            //
+	////////////////////////
+
+	  ////////////////////////
+	 //  protected         //
+	////////////////////////
+	
 	protected virtual void updateCameraPosition() {
 		
 		// Simple follow
@@ -46,15 +90,14 @@ public class SmallShipCamera : SmallShipComponent {
 	protected virtual void updateCameraRotation() {
 		// Camera rotate
 		cam.transform.forward = cameraTarget.forward;
-
+		
 		// Look ahead
 		cam.transform.Rotate (ship.control.getHorizontalFraction() * lookAhead.x * transform.up + ship.control.getVerticalFraction() * lookAhead.y * transform.right);		
 	}
-	
-	void OnGUI() {
-		DrawQuad (new Rect (10, 10, barLength, barHeight), healthBGColor);
-		DrawQuad (new Rect (10, 10, barLength * ship.health.healthFrac, barHeight), healthFGColor);
-	}
+
+	  ////////////////////////
+	 //  private           //
+	////////////////////////
 	
 	private void DrawQuad(Rect position, Color color) {
 		Texture2D texture = new Texture2D(1, 1);

@@ -2,11 +2,40 @@
 using System.Collections;
 
 public class SmallShipPilot : SmallShipComponent {
-	protected SmallShip smallShip {
-		get {
-			return ship as SmallShip;
-		}
-	}
+
+	    ////////////////////////
+	   ////                ////
+	  ////   Properties   ////
+	 ////                ////
+	////////////////////////
+
+	  ////////////////////////
+	 //  public            //
+	////////////////////////
+
+	  ////////////////////////
+	 //  protected         //
+	////////////////////////
+
+	  ////////////////////////
+	 //  private           //
+	////////////////////////
+
+	    ////////////////////////
+	   ////                ////
+	  ////     Unity      ////
+	 ////                ////
+	////////////////////////
+	
+	    ////////////////////////
+	   ////                ////
+	  ////    Methods     ////
+	 ////                ////
+	////////////////////////
+
+	  ////////////////////////
+	 //  public            //
+	////////////////////////
 	
 	public virtual float getThrottleModifier() {
 		return 1;
@@ -15,4 +44,12 @@ public class SmallShipPilot : SmallShipComponent {
 	public virtual Vector2 getHeading() {
 		return new Vector2 (0, 0);
 	}
+
+	  ////////////////////////
+	 //  protected         //
+	////////////////////////
+
+	  ////////////////////////
+	 //  private           //
+	////////////////////////
 }
