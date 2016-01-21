@@ -31,8 +31,8 @@ public class SmallShipControl : SmallShipComponent {
 	public          float      maxPitch               = 10 ;
 	public          float      horizontalAcceleration = 3  ;
 	public          float      verticalAcceleration   = 4  ;
-	public          float      maxHorizontalVelocity  = 3  ;
-	public          float      maxVerticalVelocity    = 3  ;
+	public          float      maxHorizontalVelocity  = 50 ;
+	public          float      maxVerticalVelocity    = 20 ;
 	public readonly float      MIN_HEADING            = -1 ;
 	public readonly float      MAX_HEADING            = 1  ;
 	
@@ -119,7 +119,6 @@ public class SmallShipControl : SmallShipComponent {
 	
 	// TODO: should be in a utility class
 	protected void lockAxis(LockedAxis axis) {
-		
 		ship.rb.MoveRotation(Quaternion.Euler (0, transform.rotation.eulerAngles.y, 0));
 	}
 	
