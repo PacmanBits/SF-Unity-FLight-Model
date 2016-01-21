@@ -44,8 +44,6 @@ public class SmallDumbFlyToTarget : SmallShipPilot {
 	}
 	
 	public override Vector2 getHeading() {
-//		Vector3 flatFwd = Vector3.ProjectOnPlane(transform.forward, Vector3.up);//
-//		Vector3 flatDir = Vector3.ProjectOnPlane(target.position - transform.position, Vector3.up);
 		Vector3 flatFwd = transform.forward;
 		Vector3 flatDir = target.position - transform.position;
 		flatFwd.y = 0;
@@ -59,11 +57,8 @@ public class SmallDumbFlyToTarget : SmallShipPilot {
 		if (flatAng > 180)
 			flatAng -= 360;
 
-		//Debug.Log (Mathf.Sign (hDot - 2));
 		return new Vector3(
 			Mathf.Sqrt(Mathf.Abs(flatAng) / 180) * Mathf.Sign(flatAng),
-//			Mathf.Pow(flatAng / 180, 2) * Mathf.Sign(flatAng),
-//			flatAng / 180,
 			target.position.y - transform.position.y
 		);
 	}
