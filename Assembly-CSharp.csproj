@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\scripts\Debug\Debris.cs" />
      <Compile Include="Assets\scripts\Debug\LevelBox.cs" />
+     <Compile Include="Assets\scripts\Debug\SmallShipTarget.cs" />
      <Compile Include="Assets\scripts\Other\ExMonoBehavior.cs" />
      <Compile Include="Assets\scripts\Other\Explosion.cs" />
      <Compile Include="Assets\scripts\Other\Shake.cs" />
@@ -55,6 +56,7 @@
      <Compile Include="Assets\scripts\Ship\LargeShip\LargeShipControl.cs" />
      <Compile Include="Assets\scripts\Ship\LargeShip\LargeShipPilot.cs" />
      <Compile Include="Assets\scripts\Ship\ShipHealth.cs" />
+     <Compile Include="Assets\scripts\Ship\SmallShip\Pilots\SmallAvoidFlyToTarget.cs" />
      <Compile Include="Assets\scripts\Ship\SmallShip\Pilots\SmallDumbFlyToTarget.cs" />
      <Compile Include="Assets\scripts\Ship\SmallShip\Pilots\SmallDumbMissile.cs" />
      <Compile Include="Assets\scripts\Ship\SmallShip\Pilots\SmallHumanPilot.cs" />
