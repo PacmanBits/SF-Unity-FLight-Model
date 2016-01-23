@@ -56,6 +56,7 @@ public class SmallAvoidFlyToTarget : SmallShipPilot {
 
 	void OnDrawGizmosSelected() {
 		Gizmos.color = Color.magenta;
+		Gizmos.matrix = transform.localToWorldMatrix;
 		Gizmos.DrawWireCube(avoidanceArea.center, avoidanceArea.size);
 	}
 
