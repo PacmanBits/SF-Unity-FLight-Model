@@ -15,6 +15,7 @@ public class SmallAvoidFlyToTarget : SmallShipPilot {
 
 	public Transform target;
 	public Bounds avoidanceArea = new Bounds(new Vector3 (0, 0, 5), new Vector3 (5, 5, 10));
+	public float fullTurnAtAngle = 10;
 
 	  ////////////////////////
 	 //  protected         //
@@ -91,7 +92,7 @@ public class SmallAvoidFlyToTarget : SmallShipPilot {
 			float flatAng = getFlatAngleFromForward(targetDirection);
 
 			return new Vector3 (
-				Mathf.Sqrt (Mathf.Abs (flatAng) / 90) * Mathf.Sign (flatAng),
+				Mathf.Sqrt (Mathf.Abs (flatAng) / fullTurnAtAngle) * Mathf.Sign (flatAng),
 				targetDirection.y
 			);
 		}
