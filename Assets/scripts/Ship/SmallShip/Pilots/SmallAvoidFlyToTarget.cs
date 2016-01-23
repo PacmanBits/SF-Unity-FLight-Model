@@ -91,7 +91,7 @@ public class SmallAvoidFlyToTarget : SmallShipPilot {
 			float flatAng = getFlatAngleFromForward(targetDirection);
 
 			return new Vector3 (
-				Mathf.Sqrt (Mathf.Abs (flatAng) / 180) * Mathf.Sign (flatAng),
+				Mathf.Sqrt (Mathf.Abs (flatAng) / 90) * Mathf.Sign (flatAng),
 				targetDirection.y
 			);
 		}
