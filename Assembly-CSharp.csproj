@@ -67,6 +67,7 @@
      <Compile Include="Assets\scripts\Ship\SmallShip\SmallShipCrash.cs" />
      <Compile Include="Assets\scripts\Ship\SmallShip\SmallShipEngine.cs" />
      <Compile Include="Assets\scripts\Ship\SmallShip\SmallShipPilot.cs" />
+     <Compile Include="Assets\scripts\WeaponProjectiles\SmallBasicLaser.cs" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
