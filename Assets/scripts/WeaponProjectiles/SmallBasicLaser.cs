@@ -1,0 +1,63 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class SmallBasicLaser : MonoBehaviour {
+
+	    ////////////////////////
+	   ////                ////
+	  ////   Properties   ////
+	 ////                ////
+	////////////////////////
+
+	  ////////////////////////
+	 //  public            //
+	////////////////////////
+
+	public float maxLife = 10;
+	public float speed = 1;
+
+	  ////////////////////////
+	 //  protected         //
+	////////////////////////
+
+	  ////////////////////////
+	 //  private           //
+	////////////////////////
+
+	private float alive = 0;
+
+	    ////////////////////////
+	   ////                ////
+	  ////     Unity      ////
+	 ////                ////
+	////////////////////////
+
+	void Update() {
+		alive += Time.deltaTime;
+
+		if (alive > maxLife) {
+			Destroy(this);
+			return;
+		}
+
+		transform.position += speed * transform.forward;
+	}
+
+	    ////////////////////////
+	   ////                ////
+	  ////    Methods     ////
+	 ////                ////
+	////////////////////////
+
+	  ////////////////////////
+	 //  public            //
+	////////////////////////
+
+	  ////////////////////////
+	 //  protected         //
+	////////////////////////
+
+	  ////////////////////////
+	 //  private           //
+	////////////////////////
+}
