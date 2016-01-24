@@ -50,6 +50,7 @@
      <Compile Include="Assets\scripts\Debug\SmallShipTarget.cs" />
      <Compile Include="Assets\scripts\Other\ExMonoBehavior.cs" />
      <Compile Include="Assets\scripts\Other\Explosion.cs" />
+     <Compile Include="Assets\scripts\Other\GameManager.cs" />
      <Compile Include="Assets\scripts\Other\Shake.cs" />
      <Compile Include="Assets\scripts\Ship\LargeShip\LargeShip.cs" />
      <Compile Include="Assets\scripts\Ship\LargeShip\LargeShipComponent.cs" />
