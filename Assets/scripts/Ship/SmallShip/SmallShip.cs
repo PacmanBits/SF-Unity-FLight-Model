@@ -3,6 +3,45 @@ using System.Collections;
 
 public class SmallShip : ExMonoBehavior {
 
+	public static class Input {
+
+		public static bool primaryFire() {
+			return UnityEngine.Input.GetKey (KeyCode.Space);
+		}
+		
+		public static bool secondaryFire() {
+			return UnityEngine.Input.GetKey (KeyCode.LeftCommand);
+		}
+
+		public static bool speedUp() {
+			return UnityEngine.Input.GetKey (KeyCode.LeftShift);
+		}
+
+		public static bool slowDown() {
+			return UnityEngine.Input.GetKey (KeyCode.LeftControl);
+		}
+
+		public static float horizontalAxis() {
+			if (UnityEngine.Input.GetKey (KeyCode.A))
+				return -1;
+
+			if (UnityEngine.Input.GetKey (KeyCode.D))
+				return 1;
+			
+			return 0;
+		}
+		
+		public static float verticalAxis() {
+			if (UnityEngine.Input.GetKey (KeyCode.W))
+				return -1;
+			
+			if (UnityEngine.Input.GetKey (KeyCode.S))
+				return 1;
+			
+			return 0;
+		}
+	}
+
 	    ////////////////////////
 	   ////                ////
 	  ////   Properties   ////
