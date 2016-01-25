@@ -35,7 +35,9 @@ public class SmallAvoidFlyToTarget : SmallShipPilot {
 	 ////                ////
 	////////////////////////
 	 
-	void Start() {
+	protected override void Start() {
+		base.Start ();
+
 		avoidanceCollider = gameObject.AddComponent<BoxCollider> ();
 		avoidanceCollider.isTrigger = true;
 		avoidanceCollider.center = avoidanceArea.center;
