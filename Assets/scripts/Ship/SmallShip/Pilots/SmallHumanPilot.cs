@@ -12,6 +12,8 @@ public class SmallHumanPilot : SmallShipPilot {
 	  ////////////////////////
 	 //  public            //
 	////////////////////////
+	 
+	public GameObject primary;
 
 	  ////////////////////////
 	 //  protected         //
@@ -26,6 +28,11 @@ public class SmallHumanPilot : SmallShipPilot {
 	  ////     Unity      ////
 	 ////                ////
 	////////////////////////
+
+	void Update() {
+		if(SmallShip.Input.primaryFire.down())
+			GameObject.Instantiate(primary, transform.position, transform.rotation);
+	}
 	
 	    ////////////////////////
 	   ////                ////
@@ -38,9 +45,9 @@ public class SmallHumanPilot : SmallShipPilot {
 	////////////////////////
 	
 	public override float getThrottleModifier() {
-		if (SmallShip.Input.speedUp())
+		if (SmallShip.Input.speedUp.down ())
 			return 2;
-		else if (SmallShip.Input.slowDown())
+		else if (SmallShip.Input.slowDown.down ())
 			return 0.5f;
 		else
 			return 1;
