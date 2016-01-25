@@ -5,21 +5,10 @@ public class SmallShip : ExMonoBehavior {
 
 	public static class Input {
 
-		public static bool primaryFire() {
-			return UnityEngine.Input.GetKey (KeyCode.Space);
-		}
-		
-		public static bool secondaryFire() {
-			return UnityEngine.Input.GetKey (KeyCode.LeftCommand);
-		}
-
-		public static bool speedUp() {
-			return UnityEngine.Input.GetKey (KeyCode.LeftShift);
-		}
-
-		public static bool slowDown() {
-			return UnityEngine.Input.GetKey (KeyCode.LeftControl);
-		}
+		public static InputManager.IInputValue primaryFire   = InputManager.getInputValueObj(KeyCode.Space)       ;
+		public static InputManager.IInputValue secondaryFire = InputManager.getInputValueObj(KeyCode.LeftCommand) ;
+		public static InputManager.IInputValue speedUp       = InputManager.getInputValueObj(KeyCode.LeftShift)   ;
+		public static InputManager.IInputValue slowDown      = InputManager.getInputValueObj(KeyCode.LeftControl) ;
 
 		public static float horizontalAxis() {
 			if (UnityEngine.Input.GetKey (KeyCode.A))
@@ -32,10 +21,10 @@ public class SmallShip : ExMonoBehavior {
 		}
 		
 		public static float verticalAxis() {
-			if (UnityEngine.Input.GetKey (KeyCode.W))
+			if (UnityEngine.Input.GetKey (KeyCode.S))
 				return -1;
 			
-			if (UnityEngine.Input.GetKey (KeyCode.S))
+			if (UnityEngine.Input.GetKey (KeyCode.W))
 				return 1;
 			
 			return 0;
