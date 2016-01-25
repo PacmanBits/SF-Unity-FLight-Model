@@ -36,10 +36,10 @@ public class SmallBasicLaser : MonoBehaviour {
 		alive += Time.deltaTime;
 
 		if (alive > maxLife) {
-			Destroy(this);
+			Destroy(gameObject);
 			return;
 		}
-
+		
 		transform.position += speed * transform.forward;
 	}
 
