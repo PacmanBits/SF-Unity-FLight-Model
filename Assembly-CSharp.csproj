@@ -45,30 +45,30 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\scripts\Debug\Debris.cs" />
-     <Compile Include="Assets\scripts\Debug\LevelBox.cs" />
-     <Compile Include="Assets\scripts\Debug\SmallShipTarget.cs" />
-     <Compile Include="Assets\scripts\Other\ExMonoBehavior.cs" />
-     <Compile Include="Assets\scripts\Other\Explosion.cs" />
-     <Compile Include="Assets\scripts\Other\GameManager.cs" />
-     <Compile Include="Assets\scripts\Other\Shake.cs" />
-     <Compile Include="Assets\scripts\Ship\LargeShip\LargeShip.cs" />
-     <Compile Include="Assets\scripts\Ship\LargeShip\LargeShipComponent.cs" />
-     <Compile Include="Assets\scripts\Ship\LargeShip\LargeShipControl.cs" />
-     <Compile Include="Assets\scripts\Ship\LargeShip\LargeShipPilot.cs" />
-     <Compile Include="Assets\scripts\Ship\ShipHealth.cs" />
-     <Compile Include="Assets\scripts\Ship\SmallShip\Pilots\SmallAvoidFlyToTarget.cs" />
-     <Compile Include="Assets\scripts\Ship\SmallShip\Pilots\SmallDumbFlyToTarget.cs" />
-     <Compile Include="Assets\scripts\Ship\SmallShip\Pilots\SmallDumbMissile.cs" />
-     <Compile Include="Assets\scripts\Ship\SmallShip\Pilots\SmallHumanPilot.cs" />
-     <Compile Include="Assets\scripts\Ship\SmallShip\SmallShip.cs" />
-     <Compile Include="Assets\scripts\Ship\SmallShip\SmallShipCamera.cs" />
-     <Compile Include="Assets\scripts\Ship\SmallShip\SmallShipComponent.cs" />
-     <Compile Include="Assets\scripts\Ship\SmallShip\SmallShipControl.cs" />
-     <Compile Include="Assets\scripts\Ship\SmallShip\SmallShipCrash.cs" />
-     <Compile Include="Assets\scripts\Ship\SmallShip\SmallShipEngine.cs" />
-     <Compile Include="Assets\scripts\Ship\SmallShip\SmallShipPilot.cs" />
-     <Compile Include="Assets\scripts\WeaponProjectiles\SmallBasicLaser.cs" />
+     <Compile Include="Assets\Scripts\Debug\Debris.cs" />
+     <Compile Include="Assets\Scripts\Debug\LevelBox.cs" />
+     <Compile Include="Assets\Scripts\Debug\SmallShipTarget.cs" />
+     <Compile Include="Assets\Scripts\Other\ExMonoBehavior.cs" />
+     <Compile Include="Assets\Scripts\Other\Explosion.cs" />
+     <Compile Include="Assets\Scripts\Other\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Other\Shake.cs" />
+     <Compile Include="Assets\Scripts\Ship\LargeShip\LargeShip.cs" />
+     <Compile Include="Assets\Scripts\Ship\LargeShip\LargeShipComponent.cs" />
+     <Compile Include="Assets\Scripts\Ship\LargeShip\LargeShipControl.cs" />
+     <Compile Include="Assets\Scripts\Ship\LargeShip\LargeShipPilot.cs" />
+     <Compile Include="Assets\Scripts\Ship\ShipHealth.cs" />
+     <Compile Include="Assets\Scripts\Ship\SmallShip\Pilots\SmallAvoidFlyToTarget.cs" />
+     <Compile Include="Assets\Scripts\Ship\SmallShip\Pilots\SmallDumbFlyToTarget.cs" />
+     <Compile Include="Assets\Scripts\Ship\SmallShip\Pilots\SmallDumbMissile.cs" />
+     <Compile Include="Assets\Scripts\Ship\SmallShip\Pilots\SmallHumanPilot.cs" />
+     <Compile Include="Assets\Scripts\Ship\SmallShip\SmallShip.cs" />
+     <Compile Include="Assets\Scripts\Ship\SmallShip\SmallShipCamera.cs" />
+     <Compile Include="Assets\Scripts\Ship\SmallShip\SmallShipComponent.cs" />
+     <Compile Include="Assets\Scripts\Ship\SmallShip\SmallShipControl.cs" />
+     <Compile Include="Assets\Scripts\Ship\SmallShip\SmallShipCrash.cs" />
+     <Compile Include="Assets\Scripts\Ship\SmallShip\SmallShipEngine.cs" />
+     <Compile Include="Assets\Scripts\Ship\SmallShip\SmallShipPilot.cs" />
+     <Compile Include="Assets\Scripts\WeaponProjectiles\SmallBasicLaser.cs" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
