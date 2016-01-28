@@ -30,8 +30,8 @@ public class SmallHumanPilot : SmallShipPilot {
 	////////////////////////
 
 	void Update() {
-		if(SmallShip.Input.primaryFire.down())
-			GameObject.Instantiate(primary, transform.position, transform.rotation);
+		if(SmallShip.Input.primaryFire.stay())
+			GameObject.Instantiate(primary, ship.control.rollObj.transform.position, ship.control.rollObj.transform.rotation);
 	}
 	
 	    ////////////////////////
