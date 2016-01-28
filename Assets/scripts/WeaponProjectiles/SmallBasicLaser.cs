@@ -15,6 +15,7 @@ public class SmallBasicLaser : MonoBehaviour {
 
 	public float maxLife = 10;
 	public float speed = 1;
+	public float damage = 10;
 
 	  ////////////////////////
 	 //  protected         //
@@ -36,11 +37,20 @@ public class SmallBasicLaser : MonoBehaviour {
 		alive += Time.deltaTime;
 
 		if (alive > maxLife) {
-			Destroy(gameObject);
+			die();
 			return;
 		}
 		
 		transform.position += speed * transform.forward;
+	}
+
+	void OnTriggerEnter(Collider other) {
+		die(true);
+
+		ShipHealth otherHealth = other.GetComponent<ShipHealth> ();
+
+		if(otherHealth != null)
+			otherHealth.damage(damage);
 	}
 
 	    ////////////////////////
@@ -60,4 +70,8 @@ public class SmallBasicLaser : MonoBehaviour {
 	  ////////////////////////
 	 //  private           //
 	////////////////////////
+
+	private void die(bool explode = false) {
+		Destroy(gameObject);
+	}
 }
