@@ -88,16 +88,33 @@ public class SmallShipCamera : SmallShipComponent {
 	}
 	
 	protected virtual void updateCameraRotation() {
+		float hrFrac = transformControlFractions(ship.control.getHorizontalFraction());
+		float vrFrac = transformControlFractions(ship.control.getVerticalFraction());
+
 		// Camera rotate
 		cam.transform.forward = cameraTarget.forward;
+
+		// Rotational lag
+		cam.transform.RotateAround(transform.position, Vector3.up, -hrFrac * lookAhead.x);
 		
 		// Look ahead
-		cam.transform.Rotate (ship.control.getHorizontalFraction() * lookAhead.x * transform.up + ship.control.getVerticalFraction() * lookAhead.y * transform.right);		
+		cam.transform.Rotate (hrFrac * lookAhead.x * transform.up + vrFrac * lookAhead.y * transform.right);		
 	}
 
 	  ////////////////////////
 	 //  private           //
 	////////////////////////
+
+	private float transformControlFractions(float frac) {
+//		if(frac > 0.5)
+//			return -Mathf.Cos(Mathf.PI * (2 * frac + 1)) + 1;
+//		else if(frac < -0.5)
+//			return Mathf.Cos(Mathf.PI * (2 * frac + 1)) - 1;
+		if(frac < -0.25 || frac > 0.25)
+			return Mathf.SmoothStep(0f, 1.0f, Mathf.Abs(frac) - 0.25f) * Mathf.Sign(frac);
+
+		return 0;
+	}
 	
 	private void DrawQuad(Rect position, Color color) {
 		Texture2D texture = new Texture2D(1, 1);
