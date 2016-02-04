@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LargeShipControl : LargeShipComponent {
+public class LargeShipEngine : LargeShipComponent {
 
 	    ////////////////////////
 	   ////                ////

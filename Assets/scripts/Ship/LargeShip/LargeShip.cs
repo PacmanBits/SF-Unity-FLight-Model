@@ -16,10 +16,10 @@ public class LargeShip : ExMonoBehavior {
 	public Rigidbody   rb      { get; private set; }
 	public ShipHealth  health  { get; private set; }
 
-	public SmallShipPilot   pilot   { get; private set; }
-	public SmallShipControl control { get; private set; }
-	public SmallShipEngine  engine  { get; private set; }
-	public SmallShipCamera  cam     { get; private set; }
+	public LargeShipPilot   pilot   { get; private set; }
+	public LargeShipControl control { get; private set; }
+	public LargeShipEngine  engine  { get; private set; }
+	public LargeShipCamera  cam     { get; private set; }
 
 	  ////////////////////////
 	 //  protected         //
@@ -39,10 +39,10 @@ public class LargeShip : ExMonoBehavior {
 		rb      = checkForComponent<Rigidbody>(true)  ;
 		health  = checkForComponent<ShipHealth>(true) ;
 		
-		pilot   = checkForComponent<SmallShipPilot>(true)  ;
-		control = checkForComponent<SmallShipControl>()    ;
-		engine  = checkForComponent<SmallShipEngine>()     ;
-		cam     = checkForComponent<SmallShipCamera>()     ;
+		pilot   = checkForComponent<LargeShipPilot>(true)  ;
+		control = checkForComponent<LargeShipControl>()    ;
+		engine  = checkForComponent<LargeShipEngine>()     ;
+		cam     = checkForComponent<LargeShipCamera>()     ;
 	}
 	
 	    ////////////////////////

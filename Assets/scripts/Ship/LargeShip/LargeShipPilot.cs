@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LargeShipPilot : MonoBehaviour {
+public class LargeShipPilot : LargeShipComponent {
 
 	    ////////////////////////
 	   ////                ////
@@ -26,10 +26,6 @@ public class LargeShipPilot : MonoBehaviour {
 	  ////     Unity      ////
 	 ////                ////
 	////////////////////////
-
-	protected virtual void Awake() {}
-	protected virtual void Start() {}
-	protected virtual void Update() {}
 
 	    ////////////////////////
 	   ////                ////
