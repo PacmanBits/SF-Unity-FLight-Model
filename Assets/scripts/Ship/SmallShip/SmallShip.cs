@@ -6,7 +6,7 @@ public class SmallShip : ExMonoBehavior {
 	public static class Input {
 
 		public static InputManager.IInputValue primaryFire   = InputManager.getInputValueObj(KeyCode.Space)       ;
-		public static InputManager.IInputValue secondaryFire = InputManager.getInputValueObj(KeyCode.LeftCommand) ;
+		public static InputManager.IInputValue secondaryFire = InputManager.getInputValueObj(KeyCode.LeftAlt) ;
 		public static InputManager.IInputValue speedUp       = InputManager.getInputValueObj(KeyCode.LeftShift)   ;
 		public static InputManager.IInputValue slowDown      = InputManager.getInputValueObj(KeyCode.LeftControl) ;
 
