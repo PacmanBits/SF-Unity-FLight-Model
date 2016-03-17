@@ -12,8 +12,9 @@ public class SmallHumanPilot : SmallShipPilot {
 	  ////////////////////////
 	 //  public            //
 	////////////////////////
-	 
+
 	public GameObject primary;
+	public Transform primaryMount;
 
 	  ////////////////////////
 	 //  protected         //
@@ -30,8 +31,12 @@ public class SmallHumanPilot : SmallShipPilot {
 	////////////////////////
 
 	void Update() {
-		if(SmallShip.Input.primaryFire.stay())
-			GameObject.Instantiate(primary, ship.control.rollObj.transform.position, ship.control.rollObj.transform.rotation);
+		Debug.DrawLine(primaryMount.position, primaryMount.position + Vector3.up);
+		Debug.DrawLine(primaryMount.position, primaryMount.position + Vector3.forward);
+		Debug.DrawLine(primaryMount.position, primaryMount.position + Vector3.right);
+
+		if(SmallShip.Input.primaryFire.down())
+			Projectile.create(primary, primaryMount.position, primaryMount.rotation, ship.rb.velocity.y * Vector3.up, gameObject);
 	}
 	
 	    ////////////////////////

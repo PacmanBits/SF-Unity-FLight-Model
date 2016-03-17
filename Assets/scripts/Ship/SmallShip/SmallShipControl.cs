@@ -83,12 +83,13 @@ public class SmallShipControl : SmallShipComponent {
 		float vertVelFrac = getVerticalFraction ();
 		float horzVelFrac = getHorizontalFraction ();
 		
-		Debug.DrawRay (transform.position, 5 * transform.right * horzVelFrac, Color.red);
-		Debug.DrawRay (transform.position, 5 * transform.up * vertVelFrac, Color.green);
+		Debug.DrawRay ( transform.position, 5 * transform.right * horzVelFrac, Color.red   );
+		Debug.DrawRay ( transform.position, 5 * transform.up * vertVelFrac,    Color.green );
 		
 		rollObj.localRotation = Quaternion.Euler (-1 * vertVelFrac * maxPitch, 0, -1 * horzVelFrac * maxRoll);
 		ship.rb.angularVelocity = horizontalVelocity * Time.deltaTime * Vector3.up;
-		ship.rb.MovePosition(transform.position + new Vector3(0, verticalVelocity * Time.deltaTime, 0));
+
+		ship.rb.MovePosition(gameManager.clampPositionToField(transform.position + new Vector3(0, verticalVelocity * Time.deltaTime, 0)));
 	}
 	
 	private void LateUpdate() {
@@ -106,10 +107,16 @@ public class SmallShipControl : SmallShipComponent {
 	////////////////////////
 	
 	public float getHorizontalFraction() {
+		if(maxHorizontalVelocity == 0)
+			return 0;
+		
 		return horizontalVelocity / maxHorizontalVelocity;
 	}
 	
 	public float getVerticalFraction() {
+		if(maxVerticalVelocity == 0)
+			return 0;
+		
 		return verticalVelocity / maxVerticalVelocity;
 	}
 

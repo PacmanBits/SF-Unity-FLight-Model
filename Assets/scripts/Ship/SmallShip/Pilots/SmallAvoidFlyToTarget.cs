@@ -25,6 +25,11 @@ public class SmallAvoidFlyToTarget : SmallShipPilot {
 	 //  private           //
 	////////////////////////
 
+	private Color healthFGColor = new Color(1,    0, 0) ;
+	private Color healthBGColor = new Color(0.5f, 0, 0) ;
+	private float barLength     = 100                   ;
+	private float barHeight     = 10                    ;
+
 	private Vector3 accumulatedDanger = Vector3.zero;
 	private float dangerCount = 0;
 	private BoxCollider avoidanceCollider;
@@ -61,6 +66,20 @@ public class SmallAvoidFlyToTarget : SmallShipPilot {
 		Gizmos.color = Color.magenta;
 		Gizmos.matrix = transform.localToWorldMatrix;
 		Gizmos.DrawWireCube(avoidanceArea.center, avoidanceArea.size);
+	}
+
+	private void OnGUI() {
+		Vector3 myLoc = Camera.main.WorldToScreenPoint(transform.position);
+		if(myLoc.z < 0)
+			return;
+
+		float dist = (Camera.main.gameObject.transform.position - transform.position).magnitude;
+
+		float scale = dist / 50;
+
+		//DrawQuad(new Rect(myLoc.x - 5, Screen.height - (myLoc.y - 5), 10, 10), Color.green);
+		DrawQuad (new Rect (myLoc.x - barLength / (scale * 2), (Screen.height - myLoc.y) - 50 / scale, barLength / scale,                          barHeight / scale), healthBGColor);
+		DrawQuad (new Rect (myLoc.x - barLength / (scale * 2), (Screen.height - myLoc.y) - 50 / scale, barLength * ship.health.healthFrac / scale, barHeight / scale), healthFGColor);
 	}
 
 	    ////////////////////////
@@ -124,6 +143,14 @@ public class SmallAvoidFlyToTarget : SmallShipPilot {
 			flatAng -= 360;
 
 		return flatAng;
+	}
+
+	private void DrawQuad(Rect position, Color color) {
+		Texture2D texture = new Texture2D(1, 1);
+		texture.SetPixel(0,0,color);
+		texture.Apply();
+		GUI.skin.box.normal.background = texture;
+		GUI.Box(position, GUIContent.none);
 	}
 }
 

@@ -16,11 +16,13 @@ public class SmallShipCamera : SmallShipComponent {
 	public Transform cameraTarget;
 	public Vector2 lookAhead = new Vector2(1, 1);
 
+	public float verticalCameraDrift = 2;
+
+	public Camera cam { get; protected set; }
+
 	  ////////////////////////
 	 //  protected         //
 	////////////////////////
-	
-	protected Camera cam;
 
 	  ////////////////////////
 	 //  private           //
@@ -73,7 +75,8 @@ public class SmallShipCamera : SmallShipComponent {
 	protected virtual void updateCameraPosition() {
 		
 		// Simple follow
-		cam.transform.position = cameraTarget.position;
+		float verticalDrift = gameManager.heightFraction(transform.position.y) * verticalCameraDrift;
+		cam.transform.position = cameraTarget.position - Vector3.up * verticalDrift;
 		
 		// Lag follow
 		/*
@@ -98,7 +101,7 @@ public class SmallShipCamera : SmallShipComponent {
 		cam.transform.RotateAround(transform.position, Vector3.up, -hrFrac * lookAhead.x);
 		
 		// Look ahead
-		cam.transform.Rotate (hrFrac * lookAhead.x * transform.up + vrFrac * lookAhead.y * transform.right);		
+		cam.transform.Rotate (hrFrac * lookAhead.x * transform.up - vrFrac * lookAhead.y * transform.right);		
 	}
 
 	  ////////////////////////

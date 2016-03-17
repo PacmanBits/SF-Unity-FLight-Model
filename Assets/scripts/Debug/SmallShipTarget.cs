@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SmallShipTarget : MonoBehaviour {
+public class SmallShipTarget : ExMonoBehavior {
 
 	    ////////////////////////
 	   ////                ////
@@ -13,7 +13,8 @@ public class SmallShipTarget : MonoBehaviour {
 	 //  public            //
 	////////////////////////
 
-	public Vector3 fieldSize = new Vector3(50, 50, 50);
+	public float fieldWidth = 100;
+	public float fieldDepth = 100;
 
 	  ////////////////////////
 	 //  protected         //
@@ -28,6 +29,10 @@ public class SmallShipTarget : MonoBehaviour {
 	  ////     Unity      ////
 	 ////                ////
 	////////////////////////
+
+	void Start() {
+		this.transform.position = newRandomPosition();
+	}
 
 	void OnTriggerEnter(Collider other) {
 		if (other.GetComponent<SmallShip> () != null)
@@ -54,9 +59,9 @@ public class SmallShipTarget : MonoBehaviour {
 
 	private Vector3 newRandomPosition() {
 		return new Vector3(
-			Random.Range(fieldSize.x / -2, fieldSize.x / 2),
-			Random.Range(fieldSize.y / -2, fieldSize.y / 2),
-			Random.Range(fieldSize.z / -2, fieldSize.z / 2)
+			Random.Range(gameManager.gameOrigin.x - fieldWidth / 2, gameManager.gameOrigin.x + fieldWidth / 2),
+			Random.Range(gameManager.gameOrigin.y, gameManager.gameOrigin.y + gameManager.gameHeight),
+			Random.Range(gameManager.gameOrigin.z - fieldDepth / -2, gameManager.gameOrigin.z + fieldDepth / 2)
 		);
 	}
 }

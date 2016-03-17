@@ -41,13 +41,15 @@ public class SmallShip : ExMonoBehavior {
 	 //  public            //
 	////////////////////////
 
-	public Rigidbody   rb      { get; private set; }
-	public ShipHealth  health  { get; private set; }
+	public Rigidbody        rb      { get; private set; }
+	public ShipHealth       health  { get; private set; }
 
 	public SmallShipPilot   pilot   { get; private set; }
 	public SmallShipControl control { get; private set; }
 	public SmallShipEngine  engine  { get; private set; }
 	public SmallShipCamera  cam     { get; private set; }
+
+	public bool             ready   { get; private set; }
 
 	  ////////////////////////
 	 //  protected         //
@@ -71,6 +73,8 @@ public class SmallShip : ExMonoBehavior {
 		control = checkForComponent<SmallShipControl>()    ;
 		engine  = checkForComponent<SmallShipEngine>()     ;
 		cam     = checkForComponent<SmallShipCamera>()     ;
+
+		ready   = true ;
 	}
 	
 	    ////////////////////////

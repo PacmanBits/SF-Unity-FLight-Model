@@ -7,7 +7,6 @@ public class Explosion : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		part = GetComponent<ParticleSystem> ();
-		part.Play();
 	}
 	
 	// Update is called once per frame

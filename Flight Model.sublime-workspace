@@ -3,6 +3,10 @@
 	{
 		"selected_items":
 		[
+			[
+				"trans",
+				"transformControlFractions"
+			]
 		]
 	},
 	"buffers":
@@ -15,16 +19,24 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 87.0,
-		"last_filter": "install",
+		"height": 392.0,
+		"last_filter": "package control",
 		"selected_items":
 		[
 			[
+				"package control",
+				"Package Control: Disable Package"
+			],
+			[
 				"install",
 				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: List Packages"
 			]
 		],
-		"width": 449.0
+		"width": 1153.0
 	},
 	"console":
 	{
@@ -45,10 +57,34 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model"
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Debug",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Other",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Ship",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Ship/LargeShip",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Ship/SmallShip",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/WeaponProjectiles"
 	],
 	"file_history":
 	[
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Ship/LargeShip/LargeShip.cs",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Ship/LargeShip/LargeShipCamera.cs",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Ship/LargeShip/LargeShipControl.cs",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Ship/LargeShip/LargeShipEngine.cs",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Ship/LargeShip/LargeShipPilot.cs",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Ship/LargeShip/LargeShipComponent.cs",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Ship/SmallShip/SmallShip.cs",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Ship/SmallShip/SmallShipCrash.cs",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Ship/SmallShip/SmallShipControl.cs",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Ship/SmallShip/Pilots/SmallAvoidFlyToTarget.cs",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Ship/SmallShip/SmallShipComponent.cs",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Ship/SmallShip/Pilots/SmallHumanPilot.cs",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Other/GameManager.cs",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Ship/ShipHealth.cs",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Ship/SmallShip/SmallShipCamera.cs",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/Debug/SmallShipTarget.cs",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/Scripts/WeaponProjectiles/SmallBasicLaser.cs",
+		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Flight Model.sublime-project",
 		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/scripts/WeaponProjectiles/SmallBasicLaser.cs",
 		"/Users/Sr_Giff/Documents/Unity Projects/Flight Model/Assets/scripts/Ship/SmallShip/SmallShip.cs",
 		"/Users/Sr_Giff/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings"
@@ -97,7 +133,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 35.0
 	},
 	"layout":
 	{
@@ -123,6 +159,10 @@
 	},
 	"menu_visible": true,
 	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.variable_get":
 	{
 		"height": 0.0
 	},
@@ -168,7 +208,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_width": 228.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

@@ -12,6 +12,7 @@ public class Debris : MonoBehaviour
 	public int   max_debris       = 100   ;
 
 	public float maxInitialV      = 2     ;
+	public float maxInitialT      = 1     ;
 
 	public bool  give_rigid_body  = true  ;
 	public float debris_density   = 0.2f  ;
@@ -51,6 +52,7 @@ public class Debris : MonoBehaviour
 		Transform deb = Instantiate (debris_prefab);
 		deb.localScale = new Vector3(scale, scale, scale);
 		deb.position = randomPointInField ();
+		deb.rotation = randomRotation ();
 		deb.parent = this.transform;
 		float volume = sphereVolume (scale);
 
@@ -59,6 +61,8 @@ public class Debris : MonoBehaviour
 			rb.mass = debris_density * volume;
 			rb.useGravity = false;
 			rb.drag = 0;
+
+			rb.angularVelocity = maxInitialT * Random.rotation.eulerAngles / 360;
 			rb.velocity = Random.onUnitSphere * Random.Range (0, maxInitialV);
 		}
 
@@ -78,6 +82,11 @@ public class Debris : MonoBehaviour
 			default:
 				return new Vector3 ( randomDepth (),       randomPointOnSide (), randomPointOnSide () );
 		}
+	}
+
+	private Quaternion randomRotation()
+	{
+		return Random.rotation;
 	}
 
 	private float randomPointOnSide()

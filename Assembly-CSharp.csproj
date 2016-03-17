@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Debug\Debris.cs" />
      <Compile Include="Assets\Scripts\Debug\LevelBox.cs" />
+     <Compile Include="Assets\Scripts\Debug\McBotter.cs" />
      <Compile Include="Assets\Scripts\Debug\SmallShipTarget.cs" />
      <Compile Include="Assets\Scripts\Other\ExMonoBehavior.cs" />
      <Compile Include="Assets\Scripts\Other\Explosion.cs" />
@@ -71,6 +72,7 @@
      <Compile Include="Assets\Scripts\Ship\SmallShip\SmallShipCrash.cs" />
      <Compile Include="Assets\Scripts\Ship\SmallShip\SmallShipEngine.cs" />
      <Compile Include="Assets\Scripts\Ship\SmallShip\SmallShipPilot.cs" />
+     <Compile Include="Assets\Scripts\WeaponProjectiles\Projectile.cs" />
      <Compile Include="Assets\Scripts\WeaponProjectiles\SmallBasicLaser.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

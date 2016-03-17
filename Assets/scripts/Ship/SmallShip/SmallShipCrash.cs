@@ -57,16 +57,21 @@ public class SmallShipCrash : SmallShipComponent {
 	}
 	
 	protected virtual void OnCollisionEnter(Collision collision) {
+		float maxImpulse = Mathf.Clamp(collision.impulse.magnitude, 0, 100);
 		float damage = collision.impulse.magnitude * damageFactor;
-		ship.health.damage (damage);
+
+		if(ship.ready == true)
+			ship.health.damage (damage);
 		
 		Ray aveNorm = averageNormal (collision.contacts);
 		Vector3 reflect = Vector3.Reflect (transform.forward, aveNorm.direction);
+
+		Vector3 lerpedReflect = Vector3.Lerp(aveNorm.direction, reflect, maxImpulse / 100);
 		
 		//Debug.DrawRay (aveNorm.origin, collision.impulse * 10, Color.blue, 10);
 		//Debug.DrawRay (aveNorm.origin, aveNorm.direction * 10, Color.green, 10);
 		//ship.rb.AddForce (point.normal * 100);
-		transform.forward = reflect;
+		transform.forward = lerpedReflect;
 		
 		Debug.DrawRay (aveNorm.origin, aveNorm.direction, Color.white, 10);
 		Debug.DrawRay (aveNorm.origin,transform.forward * -1, Color.green, 10);

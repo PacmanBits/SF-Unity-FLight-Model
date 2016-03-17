@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ExMonoBehavior : MonoBehaviour {
+public class Projectile : MonoBehaviour {
 
 	    ////////////////////////
 	   ////                ////
@@ -13,8 +13,10 @@ public class ExMonoBehavior : MonoBehaviour {
 	 //  public            //
 	////////////////////////
 
-	// TODO: find a way to make this protected
-	public static GameManager gameManager;
+	public GameObject shotBy {
+		get;
+		protected set;
+	}
 
 	  ////////////////////////
 	 //  protected         //
@@ -30,6 +32,10 @@ public class ExMonoBehavior : MonoBehaviour {
 	 ////                ////
 	////////////////////////
 
+	void OnCollisionEnter(Collision collision) {
+		hitSomething(collision);
+	}
+
 	    ////////////////////////
 	   ////                ////
 	  ////    Methods     ////
@@ -39,27 +45,32 @@ public class ExMonoBehavior : MonoBehaviour {
 	  ////////////////////////
 	 //  public            //
 	////////////////////////
-	
+
+	public static Projectile create(Object basic, Vector3 position, Quaternion rotation, Vector3 initialV = default(Vector3), GameObject shotBy = null) {
+		GameObject shot = Instantiate(basic, position, rotation) as GameObject;
+		Projectile shotComp = shot.GetComponent<Projectile>();
+		Rigidbody rb = shot.GetComponent<Rigidbody>();
+
+		if(rb != null && initialV != default(Vector3))
+			rb.velocity = initialV;
+
+		if(shotComp != null)
+			shotComp.shotBy = shotBy;
+
+		return shotComp;
+	}
+
 	  ////////////////////////
 	 //  protected         //
 	////////////////////////
 
-	protected T checkForComponent<T>(bool addIfNotFound = false) where T: Component {
-		T comp = gameObject.GetComponent<T> ();
-
-		if (comp == null) {
-			//			string name = typeof(T).Name;
-
-			if(addIfNotFound) {
-				//				Debug.LogWarning("No " + name + " component found on object, creating new " + name + ".");
-				comp = gameObject.AddComponent<T>();
-				//			} else {
-				//				Debug.LogWarning("No " + name + " component found on object.");
-			}
-		}
-
-		return comp;
+	protected virtual bool canHitShooter() {
+		return true;
 	}
+
+	protected virtual void hitSomething(Collision collision) {
+	}
+
 	  ////////////////////////
 	 //  private           //
 	////////////////////////

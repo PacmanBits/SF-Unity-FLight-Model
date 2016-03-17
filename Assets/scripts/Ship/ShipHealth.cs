@@ -61,6 +61,7 @@ public class ShipHealth : MonoBehaviour {
 	}
 	
 	public float setHealth(float amount) {
+
 		health = Mathf.Clamp (amount, 0, maxHealth);
 		
 		if (health == 0)

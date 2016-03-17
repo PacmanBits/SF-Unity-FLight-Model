@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SmallBasicLaser : MonoBehaviour {
+public class SmallBasicLaser : Projectile {
 
 	    ////////////////////////
 	   ////                ////
@@ -13,9 +13,10 @@ public class SmallBasicLaser : MonoBehaviour {
 	 //  public            //
 	////////////////////////
 
-	public float maxLife = 10;
-	public float speed = 1;
-	public float damage = 10;
+	public float maxLife = 10f;
+	public float speed = 1f;
+	public float damage = 10f;
+	public GameObject explosion;
 
 	  ////////////////////////
 	 //  protected         //
@@ -33,6 +34,12 @@ public class SmallBasicLaser : MonoBehaviour {
 	 ////                ////
 	////////////////////////
 
+
+	void Start() {
+		GetComponent<Rigidbody>().velocity = speed * transform.forward;
+	}
+
+
 	void Update() {
 		alive += Time.deltaTime;
 
@@ -40,17 +47,6 @@ public class SmallBasicLaser : MonoBehaviour {
 			die();
 			return;
 		}
-		
-		transform.position += speed * transform.forward;
-	}
-
-	void OnTriggerEnter(Collider other) {
-		die(true);
-
-		ShipHealth otherHealth = other.GetComponent<ShipHealth> ();
-
-		if(otherHealth != null)
-			otherHealth.damage(damage);
 	}
 
 	    ////////////////////////
@@ -67,11 +63,39 @@ public class SmallBasicLaser : MonoBehaviour {
 	 //  protected         //
 	////////////////////////
 
+	protected override void hitSomething(Collision collision) {
+		die(true, Quaternion.LookRotation(averageNormal(collision.contacts).direction));
+
+		ShipHealth otherHealth = collision.collider.GetComponentInParent<ShipHealth> ();
+
+		if(otherHealth != null)
+			otherHealth.damage(damage);
+	}
+
+	// TODO: UTILITY.  FUNCTION...
+	protected Ray averageNormal(ContactPoint[] contacts) {
+		Vector3 averageNormal = Vector3.zero;
+		Vector3 averagePoint  = Vector2.zero;
+
+		foreach (var contact in contacts) {
+			averageNormal += contact.normal ;
+			averagePoint  += contact.point  ;
+		}
+
+		return new Ray(averagePoint / contacts.Length, averageNormal / contacts.Length);
+	}
+
 	  ////////////////////////
 	 //  private           //
 	////////////////////////
 
-	private void die(bool explode = false) {
+	private void die(bool explode = false, Quaternion explosionAngle = default(Quaternion)) {
+		if(explosionAngle == default(Quaternion))
+			explosionAngle = Quaternion.identity;
+		
+		if(explode)
+			Instantiate (explosion, transform.position, explosionAngle);
+		
 		Destroy(gameObject);
 	}
 }

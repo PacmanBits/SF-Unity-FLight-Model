@@ -13,6 +13,14 @@ public class GameManager : MonoBehaviour {
 	 //  public            //
 	////////////////////////
 
+	public Vector3 gameOrigin {
+		get {
+			return transform.position;
+		}
+	}
+
+	public float gameHeight = 10;
+
 	  ////////////////////////
 	 //  protected         //
 	////////////////////////
@@ -27,7 +35,10 @@ public class GameManager : MonoBehaviour {
 	 ////                ////
 	////////////////////////
 
-	protected virtual void Awake() {}
+	protected virtual void Awake() {
+		ExMonoBehavior.gameManager = this;
+	}
+
 	protected virtual void Start() {}
 	protected virtual void Update() {}
 
@@ -40,6 +51,16 @@ public class GameManager : MonoBehaviour {
 	  ////////////////////////
 	 //  public            //
 	////////////////////////
+
+	public Vector3 clampPositionToField(Vector3 position) {
+		position.y = Mathf.Clamp(position.y, gameOrigin.y, gameOrigin.y + gameHeight);
+		return position;
+	}
+
+	public float heightFraction(float height) {
+		
+		return 2 * (height - (gameOrigin.y + gameHeight / 2)) / gameHeight;
+	}
 
 	  ////////////////////////
 	 //  protected         //
