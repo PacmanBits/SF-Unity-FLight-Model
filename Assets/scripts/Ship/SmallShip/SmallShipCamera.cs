@@ -18,6 +18,9 @@ public class SmallShipCamera : SmallShipComponent {
 
 	public float verticalCameraDrift = 2;
 
+	public float positionDamping = 0.5f;
+	public float rotationalDamping = 1;
+
 	public Camera cam { get; protected set; }
 
 	  ////////////////////////
@@ -48,7 +51,7 @@ public class SmallShipCamera : SmallShipComponent {
 		base.Start ();
 	}
 	
-	protected virtual void Update () {
+	protected virtual void LateUpdate () {
 		updateCameraPosition ();
 		updateCameraRotation ();
 	}
@@ -73,26 +76,34 @@ public class SmallShipCamera : SmallShipComponent {
 	////////////////////////
 	
 	protected virtual void updateCameraPosition() {
-		
+		float verticalDrift = -gameManager.heightFraction(transform.position.y) * verticalCameraDrift;
+
 		// Simple follow
-		float verticalDrift = gameManager.heightFraction(transform.position.y) * verticalCameraDrift;
-		cam.transform.position = cameraTarget.position - Vector3.up * verticalDrift;
-		
+		//cam.transform.position = cameraTarget.position + Vector3.up * verticalDrift;
+
 		// Lag follow
-		/*
-		Vector3 pDiff = cameraTarget.position - cam.transform.position;
 
-		if (pDiff.magnitude > 1)
-			pDiff.Normalize ();
+		Vector3 target = cameraTarget.position + verticalDrift * Vector3.up;
+		Vector3 current = cam.transform.position;
+		Vector3 adjusted = Vector3.Lerp(current, target, Time.deltaTime / positionDamping);
 
-		cam.transform.position += pDiff / 2f;
-		*/
-		
+		cam.transform.position = adjusted;
+	
 	}
 	
 	protected virtual void updateCameraRotation() {
 		float hrFrac = transformControlFractions(ship.control.getHorizontalFraction());
 		float vrFrac = transformControlFractions(ship.control.getVerticalFraction());
+
+		/*
+		Quaternion target = cameraTarget.rotation * Quaternion.AngleAxis(lookAhead.x * hrFrac, Vector3.up);
+		Quaternion current = cam.transform.rotation;
+		Quaternion adjusted = Quaternion.Lerp(current, target, Time.deltaTime / rotationalDamping);
+
+		Debug.Log(adjusted.eulerAngles - current.eulerAngles);
+
+		cam.transform.rotation = adjusted;
+		*/
 
 		// Camera rotate
 		cam.transform.forward = cameraTarget.forward;
@@ -101,7 +112,7 @@ public class SmallShipCamera : SmallShipComponent {
 		cam.transform.RotateAround(transform.position, Vector3.up, -hrFrac * lookAhead.x);
 		
 		// Look ahead
-		cam.transform.Rotate (hrFrac * lookAhead.x * transform.up - vrFrac * lookAhead.y * transform.right);		
+		cam.transform.Rotate (hrFrac * lookAhead.x * transform.up - vrFrac * lookAhead.y * transform.right);
 	}
 
 	  ////////////////////////

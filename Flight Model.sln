@@ -1,6 +1,8 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
+Project("{8E53BC71-5E26-ABAE-0D95-FCB0B2B3D8A3}") = "Flight Model", "Assembly-CSharp-firstpass.csproj", "{59C11DAF-071B-C334-5B2D-7FC8E94C53DE}"
+EndProject
 Project("{8E53BC71-5E26-ABAE-0D95-FCB0B2B3D8A3}") = "Flight Model", "Assembly-CSharp.csproj", "{E07B6C58-B138-5288-D1F3-E5340F3F2EC4}"
 EndProject
 Global
@@ -9,6 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59C11DAF-071B-C334-5B2D-7FC8E94C53DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59C11DAF-071B-C334-5B2D-7FC8E94C53DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59C11DAF-071B-C334-5B2D-7FC8E94C53DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59C11DAF-071B-C334-5B2D-7FC8E94C53DE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E07B6C58-B138-5288-D1F3-E5340F3F2EC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E07B6C58-B138-5288-D1F3-E5340F3F2EC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E07B6C58-B138-5288-D1F3-E5340F3F2EC4}.Release|Any CPU.ActiveCfg = Release|Any CPU

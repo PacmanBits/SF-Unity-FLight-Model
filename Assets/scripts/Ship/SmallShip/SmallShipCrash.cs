@@ -60,13 +60,16 @@ public class SmallShipCrash : SmallShipComponent {
 		float maxImpulse = Mathf.Clamp(collision.impulse.magnitude, 0, 100);
 		float damage = collision.impulse.magnitude * damageFactor;
 
-		if(ship.ready == true)
+		try {
 			ship.health.damage (damage);
+		} catch(System.Exception e) {
+			Debug.LogWarning("Tried to set health, but ship hasn't initialized, yet");
+		}
 		
 		Ray aveNorm = averageNormal (collision.contacts);
 		Vector3 reflect = Vector3.Reflect (transform.forward, aveNorm.direction);
 
-		Vector3 lerpedReflect = Vector3.Lerp(aveNorm.direction, reflect, maxImpulse / 100);
+		Vector3 lerpedReflect = Vector3.Lerp(aveNorm.direction, reflect, maxImpulse / 500);
 		
 		//Debug.DrawRay (aveNorm.origin, collision.impulse * 10, Color.blue, 10);
 		//Debug.DrawRay (aveNorm.origin, aveNorm.direction * 10, Color.green, 10);
