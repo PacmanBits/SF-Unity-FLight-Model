@@ -41,6 +41,8 @@ public class SmallShip : ExMonoBehavior {
 	 //  public            //
 	////////////////////////
 
+	public float            mass = 10;
+
 	public Rigidbody        rb      { get; private set; }
 	public ShipHealth       health  { get; private set; }
 
@@ -73,6 +75,9 @@ public class SmallShip : ExMonoBehavior {
 		control = checkForComponent<SmallShipControl>()    ;
 		engine  = checkForComponent<SmallShipEngine>()     ;
 		cam     = checkForComponent<SmallShipCamera>()     ;
+
+		rb.mass = mass;
+		rb.useGravity = false;
 
 		ready   = true ;
 	}

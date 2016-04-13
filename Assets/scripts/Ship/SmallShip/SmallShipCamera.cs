@@ -42,13 +42,17 @@ public class SmallShipCamera : SmallShipComponent {
 	 ////                ////
 	////////////////////////
 	
-	protected override void Start () {
+	protected void Start () {
 		if (cameraTarget == null)
 			throw new MissingReferenceException ("No Camera Target specified");
 		
 		cam = Camera.main;
-		
-		base.Start ();
+
+		// Interpolation is too expensive to put on every ship and, really, not necessary.  Smooth camera, however depends on it
+		if(ship.ready)
+			ship.rb.interpolation = UnityEngine.RigidbodyInterpolation.Interpolate;
+		else
+			Debug.LogWarning("Tried to change rigidbody interpolation but ship was not ready");
 	}
 	
 	protected virtual void LateUpdate () {
@@ -79,15 +83,14 @@ public class SmallShipCamera : SmallShipComponent {
 		float verticalDrift = -gameManager.heightFraction(transform.position.y) * verticalCameraDrift;
 
 		// Simple follow
-		//cam.transform.position = cameraTarget.position + Vector3.up * verticalDrift;
+		cam.transform.position = cameraTarget.position + Vector3.up * verticalDrift;
 
 		// Lag follow
+		//Vector3 target = cameraTarget.position + verticalDrift * Vector3.up;
+		//Vector3 current = cam.transform.position;
+		//Vector3 adjusted = Vector3.Lerp(current, target, Time.deltaTime / positionDamping);
 
-		Vector3 target = cameraTarget.position + verticalDrift * Vector3.up;
-		Vector3 current = cam.transform.position;
-		Vector3 adjusted = Vector3.Lerp(current, target, Time.deltaTime / positionDamping);
-
-		cam.transform.position = adjusted;
+		//cam.transform.position = adjusted;
 	
 	}
 	

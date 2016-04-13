@@ -61,9 +61,7 @@ public class SmallShipControl : SmallShipComponent {
 	 ////                ////
 	////////////////////////
 	
-	protected override void Start () {
-		base.Start ();
-		
+	protected void Start () {
 		horizontalVelocity = 0;
 		verticalVelocity = 0;
 		

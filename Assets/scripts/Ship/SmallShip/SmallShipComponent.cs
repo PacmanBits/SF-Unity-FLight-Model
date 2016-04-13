@@ -28,7 +28,7 @@ public class SmallShipComponent : ExMonoBehavior {
 	 ////                ////
 	////////////////////////
 	
-	protected virtual void Start () {
+	protected virtual void Awake () {
 		ship = checkForComponent<SmallShip> (true);
 	}
 	
