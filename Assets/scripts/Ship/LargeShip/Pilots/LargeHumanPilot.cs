@@ -1,15 +1,55 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LargeHumanPilot : MonoBehaviour {
+public class LargeHumanPilot : LargeShipPilot {
 
-	// Use this for initialization
-	void Start () {
+	    ////////////////////////
+	   ////                ////
+	  ////   Properties   ////
+	 ////                ////
+	////////////////////////
+
+	  ////////////////////////
+	 //  public            //
+	////////////////////////
+
+	  ////////////////////////
+	 //  protected         //
+	////////////////////////
+
+	  ////////////////////////
+	 //  private           //
+	////////////////////////
+
+	    ////////////////////////
+	   ////                ////
+	  ////     Unity      ////
+	 ////                ////
+	////////////////////////
 	
+	    ////////////////////////
+	   ////                ////
+	  ////    Methods     ////
+	 ////                ////
+	////////////////////////
+
+	  ////////////////////////
+	 //  public            //
+	////////////////////////
+	
+	public override float getThrottle() {
+		return LargeShip.Input.verticalAxis();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	public override float getHeading() {
+		return LargeShip.Input.horizontalAxis();
 	}
+
+	  ////////////////////////
+	 //  protected         //
+	////////////////////////
+
+	  ////////////////////////
+	 //  private           //
+	////////////////////////
 }

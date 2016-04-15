@@ -50,6 +50,7 @@ public class SmallShip : ExMonoBehavior {
 	public SmallShipControl control { get; private set; }
 	public SmallShipEngine  engine  { get; private set; }
 	public SmallShipCamera  cam     { get; private set; }
+	public SmallShipCrash   crash   { get; private set; }
 
 	public bool             ready   { get; private set; }
 
@@ -75,6 +76,7 @@ public class SmallShip : ExMonoBehavior {
 		control = checkForComponent<SmallShipControl>()    ;
 		engine  = checkForComponent<SmallShipEngine>()     ;
 		cam     = checkForComponent<SmallShipCamera>()     ;
+		crash   = checkForComponent<SmallShipCrash>(true)  ;
 
 		rb.mass = mass;
 		rb.useGravity = false;

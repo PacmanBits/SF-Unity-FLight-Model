@@ -18,7 +18,7 @@ public class McBotter : MonoBehaviour
 		if (McPrefab == null)
 			throw new MissingComponentException ("Must set a McSheen prefab");
 
-		Transform target = GameObject.Find("Target").transform;
+		Transform target = GameObject.Find("El Poshivo").transform;
 
 		for (int m = 0; m < McCount; m++)
 		{

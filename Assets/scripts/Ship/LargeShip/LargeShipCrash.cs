@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LargeShipPilot : LargeShipComponent {
+public class LargeShipCrash : LargeShipComponent {
 
 	    ////////////////////////
 	   ////                ////
@@ -12,6 +12,8 @@ public class LargeShipPilot : LargeShipComponent {
 	  ////////////////////////
 	 //  public            //
 	////////////////////////
+	
+	public float damageFactor = 1.0f;
 
 	  ////////////////////////
 	 //  protected         //
@@ -26,7 +28,7 @@ public class LargeShipPilot : LargeShipComponent {
 	  ////     Unity      ////
 	 ////                ////
 	////////////////////////
-
+	
 	    ////////////////////////
 	   ////                ////
 	  ////    Methods     ////
@@ -37,17 +39,23 @@ public class LargeShipPilot : LargeShipComponent {
 	 //  public            //
 	////////////////////////
 
-	public virtual float getThrottle() {
-		return 0;
-	}
-
-	public virtual float getHeading() {
-		return 0;
-	}
-
 	  ////////////////////////
 	 //  protected         //
 	////////////////////////
+	
+	protected virtual void OnCollisionEnter(Collision collision) {
+		float maxImpulse = Mathf.Clamp(collision.impulse.magnitude, 0, 100);
+		float damage = collision.impulse.magnitude * damageFactor;
+
+		try {
+			ship.health.damage (damage);
+		} catch(System.Exception e) {
+			Debug.LogWarning("Tried to set health, but ship hasn't initialized, yet");
+		}
+		
+		//GetComponent<Shake> ().shake ();
+		
+	}
 
 	  ////////////////////////
 	 //  private           //

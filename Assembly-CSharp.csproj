@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\Ship\LargeShip\LargeShipCamera.cs" />
      <Compile Include="Assets\Scripts\Ship\LargeShip\LargeShipComponent.cs" />
      <Compile Include="Assets\Scripts\Ship\LargeShip\LargeShipControl.cs" />
+     <Compile Include="Assets\Scripts\Ship\LargeShip\LargeShipCrash.cs" />
      <Compile Include="Assets\Scripts\Ship\LargeShip\LargeShipEngine.cs" />
      <Compile Include="Assets\Scripts\Ship\LargeShip\LargeShipPilot.cs" />
      <Compile Include="Assets\Scripts\Ship\LargeShip\Pilots\LargeHumanPilot.cs" />

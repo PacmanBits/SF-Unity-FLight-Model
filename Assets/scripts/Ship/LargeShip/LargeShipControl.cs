@@ -13,6 +13,8 @@ public class LargeShipControl : LargeShipComponent {
 	 //  public            //
 	////////////////////////
 
+	public float torqueModifier = 10000;
+
 	  ////////////////////////
 	 //  protected         //
 	////////////////////////
@@ -26,6 +28,10 @@ public class LargeShipControl : LargeShipComponent {
 	  ////     Unity      ////
 	 ////                ////
 	////////////////////////
+
+	private void Update () {
+		ship.rb.AddTorque(transform.up * ship.pilot.getHeading() * torqueModifier);
+	}
 
 	    ////////////////////////
 	   ////                ////

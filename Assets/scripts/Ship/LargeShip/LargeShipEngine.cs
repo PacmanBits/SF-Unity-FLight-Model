@@ -13,6 +13,8 @@ public class LargeShipEngine : LargeShipComponent {
 	 //  public            //
 	////////////////////////
 
+	public float throttleModifier = 1000;
+
 	  ////////////////////////
 	 //  protected         //
 	////////////////////////
@@ -26,6 +28,17 @@ public class LargeShipEngine : LargeShipComponent {
 	  ////     Unity      ////
 	 ////                ////
 	////////////////////////
+
+	private void Start () {
+		ship.rb.angularDrag = 1;
+		ship.rb.drag = 1;
+	}
+
+	private void Update () {
+		ship.rb.AddForce(throttleModifier * transform.forward * ship.pilot.getThrottle());
+
+		//ship.rb.velocity = Vector3.Cross(ship.rb.velocity, transform.forward);
+	}
 
 	    ////////////////////////
 	   ////                ////

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LargeShipComponent : MonoBehaviour {
+public class LargeShipComponent : ExMonoBehavior {
 
 	    ////////////////////////
 	   ////                ////
@@ -17,6 +17,8 @@ public class LargeShipComponent : MonoBehaviour {
 	 //  protected         //
 	////////////////////////
 
+	protected LargeShip ship;
+
 	  ////////////////////////
 	 //  private           //
 	////////////////////////
@@ -27,9 +29,9 @@ public class LargeShipComponent : MonoBehaviour {
 	 ////                ////
 	////////////////////////
 
-	protected virtual void Awake() {}
-	protected virtual void Start() {}
-	protected virtual void Update() {}
+	protected virtual void Awake () {
+		ship = checkForComponent<LargeShip> (true);
+	}
 
 	    ////////////////////////
 	   ////                ////
