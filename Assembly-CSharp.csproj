@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\Ship\LargeShip\LargeShipEngine.cs" />
      <Compile Include="Assets\Scripts\Ship\LargeShip\LargeShipPilot.cs" />
      <Compile Include="Assets\Scripts\Ship\LargeShip\Pilots\LargeHumanPilot.cs" />
+     <Compile Include="Assets\Scripts\Ship\LargeShip\Pilots\LargeNetworkPilot.cs" />
      <Compile Include="Assets\Scripts\Ship\ShipHealth.cs" />
      <Compile Include="Assets\Scripts\Ship\SmallShip\Pilots\SmallAvoidFlyToTarget.cs" />
      <Compile Include="Assets\Scripts\Ship\SmallShip\Pilots\SmallDumbFlyToTarget.cs" />
